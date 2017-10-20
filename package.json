@@ -1,0 +1,28 @@
+{
+  "name": "primely",
+  "version": "1.0.0",
+  "description": "Keep records of your students",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elitenoire/primely.git"
+  },
+  "keywords": [
+    "sis",
+    "admin",
+    "dashboard",
+    "school"
+  ],
+  "author": "Evarista Igwe",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/elitenoire/primely/issues"
+  },
+  "homepage": "https://github.com/elitenoire/primely#readme",
+  "dependencies": {
+    "express": "^4.16.2"
+  }
+}
