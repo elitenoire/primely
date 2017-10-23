@@ -1,9 +1,16 @@
-const contactSchema = {
+const profileSchema = {
     type : 'object',
     properties : {
-        firstName : { type : 'string'},
-        lastName : { type : 'string'},
-        middleName : { type : 'string'},
+        name : {
+            type : 'object',
+            properties : {
+                firstName : { type : 'string'},
+                lastName : { type : 'string'},
+                middleName : { type : 'string'}
+            },
+            required : ['firstName', 'lastName'],
+            additionalProperties : false
+        },
         contact : {
             type : 'object',
             properties : {
@@ -25,8 +32,7 @@ const contactSchema = {
             additionalProperties : false
         }
     },
-    required : ['firstName', 'lastName', 'contact'],
-    additionalProperties : false
+    required : ['name' , 'contact'],
 }
 
-export default contactSchema
+export default profileSchema

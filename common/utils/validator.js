@@ -4,6 +4,7 @@ const ajv = new Ajv({
     $data: true,
     useDefaults: true,
     removeAdditional : true,
+    allErrors : true
     //format : 'full',
     // coerceTypes : true
 });

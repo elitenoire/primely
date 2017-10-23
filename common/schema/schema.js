@@ -1,17 +1,17 @@
-import contactSchema from './contact'
+import profileSchema from './profile'
 import selectCourseSchema from './selectCourse'
 
-const students = {
+const student = {
   $id : 'studentForm',
   definitions : {
-    contact : contactSchema,
+    profile : profileSchema,
     selectCourse : selectCourseSchema
   },
   type : 'object',
   properties : {
     details : {
       allOf : [
-        {$ref : 'studentForm#/definitions/contact'},
+        {$ref : 'studentForm#/definitions/profile'},
         { properties : {
             gender : { enum : ['M', 'F']},
             birthdate : { type : 'string', format : 'date'},
@@ -20,19 +20,21 @@ const students = {
           required : ['gender', 'birthdate', 'nationality'],
           additionalProperties : false
         }
-      ]
+      ],
+      maxProperties : 5 //profile has 2
     },
     emergency : {
       allOf : [
-        { $ref : 'studentForm#/definitions/contact'},
+        { $ref : 'studentForm#/definitions/profile'},
         { properties : {
             relship : { type : 'string'},
-            title : { enum : ['Mr', 'Miss', 'Mrs']}
+            title : { enum : ['Mr', 'Ms', 'Mrs']}
           },
           required : ['relship', 'title'],
           additionalProperties : false
         }
-      ]
+      ],
+      maxProperties : 4 //profile has 2
     },
     courseSelection : { $ref : 'studentForm#/definitions/selectCourse'},
     eduHistory : {
