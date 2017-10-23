@@ -3,7 +3,7 @@ const studentRouter = require('./middlewares/students')
 
 const app = express()
 
-const PORT = 5000 // || process.env.PORT
+const PORT =  process.env.PORT || 5000
 
 // app.set('port' , PORT)
 // app.get('port') => returns PORT
