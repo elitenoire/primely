@@ -3,12 +3,12 @@
   "version": "1.0.0",
   "description": "Keep records of your students",
   "main": "server/server.js",
-  "engines":{
-    "node" : "8.4.0",
-    "npm" :"5.5.1"
+  "engines": {
+    "node": "8.4.0",
+    "npm": "5.5.1"
   },
   "scripts": {
-    "start" : "node server/server.js"
+    "start": "node server/server.js"
   },
   "repository": {
     "type": "git",
@@ -30,6 +30,8 @@
     "ajv": "^5.2.4",
     "ajv-errors": "^1.0.0",
     "ajv-keywords": "^2.1.0",
-    "express": "^4.16.2"
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "jsonwebtoken": "^8.1.0"
   }
 }
