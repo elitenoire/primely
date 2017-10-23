@@ -8,7 +8,7 @@ const contactSchema = {
             type : 'object',
             properties : {
                 email : { type : 'string', format : 'email'},
-                phone : {},
+                phone : { type: 'string' , format : 'phone' },
                 address : {
                     type : 'object',
                     properties : {
@@ -21,10 +21,12 @@ const contactSchema = {
                     additionalProperties : false
                 }
             },
-            required : ['email', 'phone', 'address']
+            required : ['email', 'phone', 'address'],
+            additionalProperties : false
         }
     },
-    required : ['firstName', 'lastName', 'contact']
+    required : ['firstName', 'lastName', 'contact'],
+    additionalProperties : false
 }
 
 export default contactSchema

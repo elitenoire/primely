@@ -17,7 +17,8 @@ const students = {
             birthdate : { type : 'string', format : 'date'},
             nationality : { type : 'string'}
           },
-          required : ['gender', 'birthdate', 'nationality']
+          required : ['gender', 'birthdate', 'nationality'],
+          additionalProperties : false
         }
       ]
     },
@@ -28,7 +29,8 @@ const students = {
             relship : { type : 'string'},
             title : { enum : ['Mr', 'Miss', 'Mrs']}
           },
-          required : ['relship', 'title']
+          required : ['relship', 'title'],
+          additionalProperties : false
         }
       ]
     },
@@ -41,9 +43,11 @@ const students = {
         attended : { type : 'string', format : 'date'}, //use from-to object
         cert : { type : 'string'}
       },
-      required : ['name', 'state', 'attended', 'cert']
+      required : ['name', 'state', 'attended', 'cert'],
+      additionalProperties : false
     }
   },
-  required : ['details', 'emergency', 'courseSelection', 'eduHistory']
+  required : ['details', 'emergency', 'courseSelection', 'eduHistory'],
+  additionalProperties : false
 }
 
