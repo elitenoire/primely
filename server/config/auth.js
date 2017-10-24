@@ -1,7 +1,7 @@
-const { username, password } = require('./key')
+const { USERNAME, PASSWORD } = require('./index')
 
 module.exports = {
-    username : process.env.USERNAME || username,
-    password : process.env.PASSWORD || password,
+    username : USERNAME,
+    password : PASSWORD,
     lastLogTime : "1508782666295"
 }
