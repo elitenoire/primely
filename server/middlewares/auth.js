@@ -5,6 +5,7 @@ const { SECRET_KEY } = require('../config')
 // middleware - authenticate api route access
 const authChecker = (req, res, next) => {
     // check header or url parameters or post parameters for token
+    // token = token.replace('Bearer ', '');
     const token = req.headers.authorization
                     ?   req.headers.authorization.split(' ')[1]
                     :   req.body.token || req.query.token

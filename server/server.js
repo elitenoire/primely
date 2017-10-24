@@ -7,6 +7,9 @@ const PORT =  process.env.PORT || 5000
 
 const app = express()
 // tell the app to look for static files in these directories
+// if (process.env.NODE_ENV === 'production') {
+//     app.use(express.static('client/build'));
+//   }
 //app.use(express.static('./server/static/'));
 //app.use(express.static('./client/dist/'));
 
