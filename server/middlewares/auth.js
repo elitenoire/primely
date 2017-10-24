@@ -1,21 +1,25 @@
 const jwt = require('jsonwebtoken')
-const user = require('../db/auth')
+const user = require('../config/auth')
+const { SECRET_KEY } = require('../config')
 
 // middleware - authenticate api route access
 const authChecker = (req, res, next) => {
     // check header or url parameters or post parameters for token
-    console.log(req.body);
-    var token = req.body.token || req.query.token || req.headers['x-access-token'];
+    const token = req.headers.authorization
+                    ?   req.headers.authorization.split(' ')[1]
+                    :   req.body.token || req.query.token
+    //var token = req.body.token || req.query.token || req.headers['x-access-token'];
     if(token){
-        console.log("token");
+        console.log(SECRET_KEY);
+        console.log(user)
         // decode the token using a secret key-phrase
-        jwt.verify(token, "primely-admin-secretKey", (err, decoded) => {
+        jwt.verify(token, SECRET_KEY , (err, decoded) => {
         if(err) { // Unauthorized access
             res.status(403).json({ errmsg : "Invalid Token /  No Admin rights" });
         }
         else {
             console.log("success");
-            req.decoded = decoded;
+            req.decoded = decoded; //change to req.user
             next();
         }
         });
@@ -33,7 +37,7 @@ const authLogin = (req, res) => {
     if (req.body.password === user.password && req.body.username === user.username){
         const tokenData = {username : user.username}
         return res.status(200).json({
-            token : jwt.sign( tokenData, "primely-admin-secretKey"),
+            token : jwt.sign( tokenData, SECRET_KEY, { expiresIn : '6h'}), //60 * 60 * 6
             message : 'Welcome Admin',
             currentLogTime : Date.now(),
             lastLogTime : user.lastLogTime,
