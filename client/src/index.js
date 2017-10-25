@@ -1,4 +1,5 @@
-import 'grommet/grommet.min.css';
+import 'semantic-ui-css/semantic.min.css';
+
 
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -18,7 +19,7 @@ import registerServiceWorker from './registerServiceWorker';
 
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
-const history = createHistory();
+const history = createHistory(); //({ basename: '/prefix/'})
 const reduxSaga = createReduxSaga();
 const middlewares = [routerMiddleware(history), reduxSaga]
 const store = createStore(reducers, composeEnhancers(applyMiddleware(...middlewares)))
