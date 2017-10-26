@@ -3,7 +3,7 @@ import routerSaga from './router'
 
 export default function* rootSaga(){
     //yield an array of iterator objects
-    yield spawn(routerSaga)
+    //yield spawn(routerSaga)
 
     // yield all([
         
