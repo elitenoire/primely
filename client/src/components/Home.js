@@ -21,7 +21,7 @@ const Home = ({ children }) => {
             </Segment>
 
             <Segment basic inverted color="yellow" attached
-                textAlign="center" padding
+                textAlign="center" padding="very"
                 style={{ minHeight: 200, border : 'none' }}
             >
             <Header as="h2" color="red" >DASHBOARD FEATURES</Header>
