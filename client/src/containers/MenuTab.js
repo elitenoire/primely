@@ -1,19 +1,22 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import { Button, Menu, Icon, Dropdown } from 'semantic-ui-react'
+import { toggleModal } from '../actions'
 
-const MenuTab = ({ isAuth }) => {
+const MenuTab = ({ isAuth, toggleModal }) => {
     return (
         <Menu.Menu position='right'>
             {
                 isAuth ? (
-                            <Dropdown item trigger={trigger} options={options} 
+                            <Dropdown item trigger={trigger} options={options}
                             icon={<Icon inverted color="yellow" name="dropdown" />}
                             />
                         )
                     : (
                         <Menu.Item>
-                            <Button inverted color="yellow" size="mini">Log In</Button>
+                            <Button inverted color="yellow" size="mini" onClick={() => toggleModal('OPEN')}>
+                                Log In
+                            </Button>
                         </Menu.Item>
                     )
             }
@@ -30,6 +33,6 @@ const options = [
 
 export default connect(
     ({ auth : { isAuth }}) => ({isAuth}),
-    null
+    { toggleModal }
 )(MenuTab)
 
