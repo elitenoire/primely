@@ -15,9 +15,9 @@ const app = express()
 
 // tell the app to parse HTTP body messages and Html Form
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use( bodyParser.json() );
+app.use(bodyParser.json() );
 
-app.post('/login', authLogin )
+app.post('/auth/login', authLogin )
 
 
 
@@ -27,6 +27,6 @@ app.post('/login', authLogin )
 
 //use middlewares
 app.use(authChecker)
-app.use('/api', studentRouter)
+app.use(studentRouter)
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`))

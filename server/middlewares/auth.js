@@ -35,17 +35,23 @@ const authChecker = (req, res, next) => {
 //Login route handler - maybe use ajv to handle validation
 const authLogin = (req, res) => {
     // Generate token only if login data is valid
-    if (req.body.password === user.password && req.body.username === user.username){
+    if (req.body.password === user.password && req.body.username.trim() === user.username){
         const tokenData = {username : user.username}
         return res.status(200).json({
-            token : jwt.sign( tokenData, SECRET_KEY, { expiresIn : '6h'}), //60 * 60 * 6
+            token : jwt.sign( tokenData, SECRET_KEY, { expiresIn : '3h'}), //60 * 60 * 6
+            success : true,
             message : 'Welcome Admin',
             currentLogTime : Date.now(),
             lastLogTime : user.lastLogTime,
             }
         )
     }
-    else return res.status(403).json({message : 'Invalid Username or Password'})
+    else return res.status(401).json({
+            username : 'Invalid Username or Password',
+            password : 'Invalid Username or Password',
+            success : false
+        }
+    )
 }
 
 module.exports = {
