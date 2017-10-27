@@ -14,8 +14,9 @@ export default function* routeChanger(){
     }))
 }
 
-function* changeRoute(path, { type, id }){
-    const action = type === 'DELETE_SNAP_PASS' ? 'replace' : 'push'
+function* changeRoute(path, { type, method, id }){
+    //const action = type === 'ADMIN_LOGOUT|LOGIN_SUCCESS' ? 'replace' : 'push'
+    const action = method || 'push'
     yield put(routerActions[action](`${path}${id || ''}`))
 }
 
