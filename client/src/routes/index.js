@@ -2,6 +2,7 @@ import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 import Home from '../components/Home'
 import LoginModal from '../containers/LoginModal'
+import Dashboard from '../containers/Dashboard'
 import { HOME_PATH, LOGIN_PATH, DASHBOARD_PATH } from './routes'
 
 const Router = () => {
@@ -13,6 +14,7 @@ const Router = () => {
                     <LoginModal />
                 </Home>
                 ) } />
+            <Route path={DASHBOARD_PATH} component={Dashboard} />
         </Switch>
     )
 }

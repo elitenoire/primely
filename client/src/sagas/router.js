@@ -3,7 +3,8 @@ import { routerActions } from 'react-router-redux'
 
 import { HOME_PATH, LOGIN_PATH, DASHBOARD_PATH } from '../routes/routes'
 
-import { OPEN_LOGIN_MODAL, CLOSE_LOGIN_MODAL } from '../constants'
+import { OPEN_LOGIN_MODAL, CLOSE_LOGIN_MODAL, LOGIN_ADMIN_PASS,
+    LOGOUT_ADMIN_PASS } from '../constants'
 
 
 
@@ -22,5 +23,7 @@ function* changeRoute(path, { type, method, id }){
 
 const actionRouteMap = {
     [OPEN_LOGIN_MODAL] : LOGIN_PATH,
-    [CLOSE_LOGIN_MODAL] : HOME_PATH
+    [CLOSE_LOGIN_MODAL] : HOME_PATH,
+    [LOGIN_ADMIN_PASS] : DASHBOARD_PATH,
+    [LOGOUT_ADMIN_PASS] : HOME_PATH
 }

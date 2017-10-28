@@ -33,7 +33,7 @@ function* manageLogin({ payload : { pathname } }){
                     loginDone = true
                     const { token } = response.data
                     yield call(auth.authenticateUser, 'accessToken', token)
-                    yield put({ type : LOGIN_ADMIN_PASS, admin : response.data})
+                    yield put({ type : LOGIN_ADMIN_PASS, admin : response.data, method : 'replace'})
                 }
                 else {
                     console.log('catch block err ', error)

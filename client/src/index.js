@@ -13,16 +13,20 @@ import createHistory from 'history/createBrowserHistory' // inferred from react-
 import App from './components/App'
 import reducers from './reducers';
 import rootSaga from './sagas';
+import { auth } from './utils'
 
 import registerServiceWorker from './registerServiceWorker';
 
 
+const initialStore = {
+    auth : { isAuth : auth.isUserAuthenticated('accessToken') }
+}
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const history = createHistory({ basename: process.env.PUBLIC_URL})
 const reduxSaga = createReduxSaga();
 const middlewares = [routerMiddleware(history) , reduxSaga]
-const store = createStore(reducers, composeEnhancers(applyMiddleware(...middlewares)))
+const store = createStore(reducers, initialStore, composeEnhancers(applyMiddleware(...middlewares)))
 
 reduxSaga.run(rootSaga)
 

@@ -38,7 +38,7 @@ const authLogin = (req, res) => {
     if (req.body.password === user.password && req.body.username.trim() === user.username){
         const tokenData = {username : user.username}
         return res.status(200).json({
-            token : jwt.sign( tokenData, SECRET_KEY, { expiresIn : '3h'}), //60 * 60 * 6
+            token : jwt.sign( tokenData, SECRET_KEY, { expiresIn : '1h'}), //60 * 60 * 6
             success : true,
             message : 'Welcome Admin',
             currentLogTime : Date.now(),

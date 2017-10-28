@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { SubmissionError } from 'redux-form';
+import jwt from 'jsonwebtoken'
 
 const client = axios.create({
     baseURL: '/auth'
@@ -31,18 +31,19 @@ auth.getTokenFromStorage = (key = 'token') => {
 }
 
 // Check if user is authenticated
-auth.isUserAuthenticated = (key) => {
-    //return localStorage.getItem(key) !== null // && TOKENhaSNOT EXPIRED?
-    return auth.getTokenFromStorage(key) !== null
+auth.isUserAuthenticated = (key = 'token') => {
+    const decodedToken = jwt.decode(auth.getTokenFromStorage(key))
+    return decodedToken && (decodedToken.exp > Date.now() / 1000)
+    //return auth.getTokenFromStorage(key) !== null
 }
 
 // Authenticate user
-auth.authenticateUser = (key, token) => {
+auth.authenticateUser = (key = 'token', token) => {
     localStorage.setItem(key, token)
 }
 
 // deauthenticate user -> Log Out
-auth.deauthenticateUser = (key) => {
+auth.deauthenticateUser = (key = 'token') => {
     localStorage.removeItem(key)
 }
 
