@@ -15,6 +15,7 @@ const Router = () => {
                 </Home>
                 ) } />
             <Route path={DASHBOARD_PATH} component={Dashboard} />
+            <Route render={() => null} />
         </Switch>
     )
 }

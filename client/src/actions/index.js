@@ -19,3 +19,10 @@ export const submitLoginData = (data, formName) => {
         formName
     }
 }
+
+export const selectMenuAction = (action, key = '') => {
+    return {
+        type : `SELECT_${action}`,
+        key
+    }
+}
