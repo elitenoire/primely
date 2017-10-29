@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { auth } from './auth'
+import { ACCESS_TOKEN } from '../constants'
 
 
 //const client = axios.create({baseURL: '/api' });
@@ -12,7 +13,7 @@ api.setAuthConfig = (token) => {
   return config
 }
 
-const client = axios.create(api.setAuthConfig(auth.getTokenFromStorage('accessToken')));
+const client = axios.create(api.setAuthConfig(auth.getTokenFromStorage(ACCESS_TOKEN)));
 
 
 export { api }

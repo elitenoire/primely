@@ -10,3 +10,7 @@ export const LOGOUT_ADMIN_PASS = 'LOGOUT_ADMIN_PASS'
 export const GOTO_ADMIN_DASHBOARD = 'GOTO_ADMIN_DASHBOARD'
 export const REDIRECT_DASHBOARD = 'REDIRECT_DASHBOARD'
 export const REDIRECT_HOME = 'REDIRECT_HOME'
+
+
+// Jwt Token Key
+export const ACCESS_TOKEN = 'accessToken'
