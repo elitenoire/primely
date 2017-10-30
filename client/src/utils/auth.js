@@ -37,6 +37,9 @@ auth.isUserAuthenticated = (key = 'token') => {
     //return auth.getTokenFromStorage(key) !== null
 }
 
+// TODO : set/persist current user (admin key) if isAuth
+// use jwt.decode to retireve uid/admin details from token
+
 // Authenticate user
 auth.authenticateUser = (key = 'token', token) => {
     localStorage.setItem(key, token)

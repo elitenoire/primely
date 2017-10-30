@@ -1,10 +1,8 @@
 import { startSubmit, stopSubmit } from 'redux-form'
-import { takeEvery, take, put, race, call, select } from 'redux-saga/effects'
-import { LOCATION_CHANGE } from 'react-router-redux'
+import { take, put, race, call, select } from 'redux-saga/effects'
 import { CANCEL_LOGIN, SUBMIT_LOGIN, ACCESS_TOKEN,
         LOGIN_ADMIN_FAIL, LOGIN_ADMIN_PASS } from '../constants'
 import { toggleModal } from '../actions'
-import { LOGIN_PATH } from '../routes/routes'
 import { auth } from '../utils'
 
 export default function* manageLogin(){
@@ -22,8 +20,8 @@ export default function* manageLogin(){
             yield put(toggleModal('CLOSE'))
         }
         else {
-            yield put(startSubmit(formName))
             const { data, formName } = submit
+            yield put(startSubmit(formName))
             const { response, error } = yield call(auth.login, data)
             if(response){
                 console.log('axios res data ', response.data)
@@ -42,8 +40,3 @@ export default function* manageLogin(){
     }
 }
 
-
-//WATCHER SAGA - listen for dispatched action, call worker to handle action
-// export default function* watchLoginModal(){
-//     yield takeEvery(LOCATION_CHANGE, manageLogin)
-// }

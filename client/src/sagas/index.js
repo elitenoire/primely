@@ -1,8 +1,7 @@
-import { fork , all, spawn} from 'redux-saga/effects'
+import { /*fork , all,*/ spawn} from 'redux-saga/effects'
 import routerSaga from './router'
 import navigationSaga from './navigation'
-//import watchLoginModal from './login'
-//import watchHomePage from './home'
+
 
 export default function* rootSaga(){
     //yield an array of iterator objects

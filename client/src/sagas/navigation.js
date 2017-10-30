@@ -1,4 +1,4 @@
-import { takeEvery, fork, call} from 'redux-saga/effects'
+import { takeEvery, fork } from 'redux-saga/effects'
 import { LOCATION_CHANGE } from 'react-router-redux'
 import { HOME_PATH, LOGIN_PATH, DASHBOARD_PATH } from '../routes/routes'
 import homeSaga from './home'

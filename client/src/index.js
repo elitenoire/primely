@@ -17,9 +17,12 @@ import { auth } from './utils'
 
 import registerServiceWorker from './registerServiceWorker';
 
-
+// TODO : set/persist current user (admin key) if isAuth
+// use jwt.decode to retireve uid/admin details from token
 const initialStore = {
-    auth : { isAuth : auth.isUserAuthenticated('accessToken') }
+    auth : {
+        isAuth : auth.isUserAuthenticated('accessToken'),
+        currentAdmin : {} }
 }
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
