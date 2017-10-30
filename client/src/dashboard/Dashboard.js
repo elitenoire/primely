@@ -15,7 +15,7 @@ class Dashboard extends Component {
                         Welcome to Primely SIS dashboard
                     </Header>
                     )}
-                    content="You can create, view and manage your students' records at a glance."
+                    content="You can create, view and manage students' record at a glance."
                     floating
                     compact
                 />
@@ -70,18 +70,18 @@ class Dashboard extends Component {
                         <Statistic color="red" floated="right" label="Students" value="5" />
                         <Label color='blue' size="large" horizontal>UFP</Label>
                         <Header as="h5" disabled ><Icon color='blue' name="info" circular /></Header>
-                    </Segment>            
+                    </Segment>
                     <Segment attached="bottom" color="brown" tertiary inverted style={{ border: 'none' }}></Segment>
                     </Container>
                 </Grid.Column>
-                
+
                 <Grid.Row divided textAlign="left" centered={false}>
                 <Grid.Column >
                     <Segment attached="top" color="orange" inverted tertiary>
                         <Header>Recent Activity</Header>
                     </Segment>
                     <Segment attached>
-                        <Feed>                
+                        <Feed>
                         <Feed.Event
                             icon='pencil'
                             date='3 mins ago'
