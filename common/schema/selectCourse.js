@@ -1,10 +1,14 @@
-import { degree, courses, common, alevels, gcse, ufp } from './choices'
+import { degree, course, common, alevels, gcse, ufp } from './choices'
 
 const courseSelectSchema = {
     $id : 'selectCourse',
     type : 'object',
-    additionalProperties: false,
-    required : ['courses', 'subjects', 'degree'],
+    additionalProperties: {
+        type : ['array', 'string'],
+        uniqueItems : true
+    },
+    maxProperties : 3,
+    required : ['course', 'degree'],
     definitions : {
         common : { enum : common },
         gcse : { enum : gcse }, //use directly
@@ -13,17 +17,13 @@ const courseSelectSchema = {
     },
     properties : {
         degree : { enum : degree },
-        courses : { enum : courses },
-        subjects : {
-            type : ['array', 'string'],
-            uniqueItems : true
-        }
+        course : { enum : course },
     },
-    select : { $data : '0/courses'},
+    select : { $data : '0/course'},
     selectCases : {
-        ALevels : {
+        alevels : {
             properties : {
-                subjects : {items : {
+                alevelsSub : {items : {
                 anyOf : [
                 { $ref : 'selectCourse#/definitions/alevels'},
                 { $ref : 'selectCourse#/definitions/common'}
@@ -33,14 +33,14 @@ const courseSelectSchema = {
                 }
             }
         },
-        UFP : {
+        ufp : {
             properties : {
-                subjects : { $ref : 'selectCourse#/definitions/ufp'}
+                ufpSub : { $ref : 'selectCourse#/definitions/ufp'}
             }
         },
-        GCSE : {
+        gcse : {
             properties : {
-                subjects : {items : {
+                gcseSub : {items : {
                 anyOf : [
                 { $ref : 'selectCourse#/definitions/gcse'},
                 { $ref : 'selectCourse#/definitions/common'}

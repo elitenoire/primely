@@ -9,7 +9,7 @@ const student = {
   },
   type : 'object',
   properties : {
-    details : {
+    persona : {
       allOf : [
         {$ref : 'studentForm#/definitions/profile'},
         { properties : {
@@ -23,7 +23,7 @@ const student = {
       ],
       maxProperties : 5 //profile has 2
     },
-    emergency : {
+    nextKin : {
       allOf : [
         { $ref : 'studentForm#/definitions/profile'},
         { properties : {
@@ -40,16 +40,24 @@ const student = {
     eduHistory : {
       type : 'object',
       properties : {
-        name : { type : 'string'},
+        school : { type : 'string'},
         state : { type : 'string'},
-        attended : { type : 'string', format : 'date'}, //use from-to object
+        attended : {
+          type : 'object',
+          properties : {
+            from : { type : 'string'}, // need to add format for month
+            to : { type : 'string'}
+          } ,
+          required : ['to'],
+          additionalProperties : false
+        },
         cert : { type : 'string'}
       },
-      required : ['name', 'state', 'attended', 'cert'],
+      required : ['school', 'state', 'attended', 'cert'],
       additionalProperties : false
     }
   },
-  required : ['details', 'emergency', 'courseSelection', 'eduHistory'],
+  required : ['persona', 'nextKin', 'courseSelection', 'eduHistory'],
   additionalProperties : false
 }
 

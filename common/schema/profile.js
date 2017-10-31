@@ -19,12 +19,12 @@ const profileSchema = {
                 address : {
                     type : 'object',
                     properties : {
-                        street : { type : 'string'},
-                        street2 : { type : 'string'},
+                        addr1 : { type : 'string'},
+                        addr2 : { type : 'string'},
                         city : { type : 'string'},
                         state : { type : 'string'}
                     },
-                    required : ['street', 'city', 'state'],
+                    required : ['addr1', 'city', 'state'],
                     additionalProperties : false
                 }
             },

@@ -1,28 +1,55 @@
 import React from 'react';
-import {Field, reduxForm } from 'redux-form'
-import { Form } from 'semantic-ui-react'
-import { LabelInputField } from 'react-semantic-redux-form'
+import {Field, FormSection, reduxForm } from 'redux-form'
+import { Form, Button } from 'semantic-ui-react'
+import { InputField } from 'react-semantic-redux-form'
 
-const eduHistory = () => {
+const EduHistory = ({ handleSubmit, previousStep }) => {
     return (
-        <Form>
-            <Form.Input required label='School Name' placeholder='Fairfield Montessori High School, VI' />
+        <Form onSubmit={handleSubmit}>
+            <FormSection name="eduHistory">
+                <Field name="school" id="school-1" component={InputField} required
+                label="School Name" placeholder="Fairfield Montessori High School, VI"
+                />
 
-            <Form.Group widths={2}>
-                <Form.Input required label='State' placeholder='Lagos' />
-                <Form.Input required label='Certificate' placeholder='WASCE' />
-            </Form.Group>
-            <Form.Group inline>
-                <label>Year Attended</label>
-                <Form.Input label='From' type="month" />
-                <Form.Input required label='To' type="month" />
-            </Form.Group>
+                <Form.Group widths={2}>
+                    <Field name="state" id="state-1" component={InputField} required
+                    label="State" placeholder="Lagos"
+                    />
+                    <Field name="cert" id="cert-1" component={InputField} required
+                    label="Certificate" placeholder="WASCE"
+                    />
+                </Form.Group>
 
-            <Button type='button' color="brown" floated="left">Back</Button>
-            <Button type='button' color="red">Cancel</Button>
-            <Button type='submit' color="yellow">Next</Button>
+                <FormSection name="attended">
+                    <Form.Group inline>
+                        <label>Year Attended</label>
+                        <Field name="from" id="yrFrom-1" component={InputField}
+                        label="From" type="month"
+                        />
+                        <Field name="to" id="yrTo-1" component={InputField} required
+                        label="To" type="month"
+                        />
+                    </Form.Group>
+                </FormSection>
+            </FormSection>
+
+            <Button onClick={previousStep} type="button" color="brown" floated="left">Back</Button>
+            <Button type="button" color="red">Cancel</Button>
+            <Button type="submit" color="yellow">Next</Button>
         </Form>
     )
 }
 
-export const eduHistory
+
+export default reduxForm (
+        {
+            form: "student",
+            destroyOnUnmount: false,
+            forceUnregisterOnUnmount: true
+        }
+    )(
+        EduHistory
+    )
+
+
+

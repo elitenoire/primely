@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import Dashboard from './Dashboard'
+import StudentForm from './StudentForm'
 import { Sidebar, Segment, Divider, Responsive,
     Button, Menu, Image, Icon, Header } from 'semantic-ui-react'
 
@@ -58,7 +59,7 @@ class Layout extends Component {
                     </Menu.Item>
                     </Menu>
                 </Segment>
-                <Dashboard />
+                <StudentForm />
                 </Sidebar.Pusher>
             </Sidebar.Pushable>
         </div>
