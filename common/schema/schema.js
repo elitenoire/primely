@@ -23,19 +23,6 @@ const student = {
       ],
       maxProperties : 5 //profile has 2
     },
-    nextKin : {
-      allOf : [
-        { $ref : 'studentForm#/definitions/profile'},
-        { properties : {
-            relship : { type : 'string'},
-            title : { enum : ['Mr', 'Ms', 'Mrs']}
-          },
-          required : ['relship', 'title'],
-          additionalProperties : false
-        }
-      ],
-      maxProperties : 4 //profile has 2
-    },
     courseSelection : { $ref : 'studentForm#/definitions/selectCourse'},
     eduHistory : {
       type : 'object',
@@ -57,7 +44,7 @@ const student = {
       additionalProperties : false
     }
   },
-  required : ['persona', 'nextKin', 'courseSelection', 'eduHistory'],
+  required : ['persona', 'courseSelection', 'eduHistory'],
   additionalProperties : false
 }
 

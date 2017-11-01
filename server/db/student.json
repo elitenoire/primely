@@ -1,0 +1,72 @@
+{
+    {
+        "persona": {
+            "name": {
+                "firstName": "Muni",
+                "lastName": "Raymond"
+            },
+            "contact": {
+                "email": "muni23@outlook.com",
+                "address": {
+                    "addr1": "45 Danfodo Street",
+                    "addr2": "Off ketu close",
+                    "city": "Kano",
+                    "state": "Kano"
+                },
+                "phone": "08123456789"
+            },
+            "gender2": true,
+            "birthdate": "1892-02-22",
+            "nationality": "kiran"
+        },
+        "eduHistory": {
+            "school": "farith high school",
+            "state": "jos",
+            "cert": "wasce",
+            "attended": {
+                "from": "2005-09",
+                "to": "2016-07"
+            }
+        },
+        "courseSelection": {
+            "degree": "architecture",
+            "course": "alevels",
+            "alevelsSub": ["Modern Languages", "Philosophy", "Photography", "Psychology", "Sociology"]
+        }
+    },
+    {
+        "persona": {
+            "name": {
+                "firstName": "Muni",
+                "lastName": "Raymond"
+            },
+            "contact": {
+                "email": "muni23@outlook.com",
+                "address": {
+                    "addr1": "45 Danfodo Street",
+                    "addr2": "Off ketu close",
+                    "city": "Kano",
+                    "state": "Kano"
+                },
+                "phone": "08123456789"
+            },
+            "gender2": true,
+            "birthdate": "1892-02-22",
+            "nationality": "kiran"
+        },
+        "eduHistory": {
+            "school": "farith high school",
+            "state": "jos",
+            "cert": "wasce",
+            "attended": {
+                "from": "2005-09",
+                "to": "2016-07"
+            }
+        },
+        "courseSelection": {
+            "degree": "architecture",
+            "course": "alevels",
+            "alevelsSub": ["Modern Languages", "Philosophy", "Photography", "Psychology", "Sociology"]
+        }
+    }
+}
