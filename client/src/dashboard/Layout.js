@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import Dashboard from './Dashboard'
-import StudentForm from './StudentForm'
+import StudentProfile from './StudentProfile'
 import { Sidebar, Segment, Divider, Responsive,
     Button, Menu, Image, Icon, Header } from 'semantic-ui-react'
 
@@ -15,7 +15,7 @@ class Layout extends Component {
         <div>
             <Sidebar.Pushable as={Segment}>
                 <Sidebar as={Menu} animation='slide along' width='thin' color="brown"
-                visible={visible} icon='labeled' vertical tertiary inverted>
+                visible={visible} icon='labeled' vertical inverted>
                 <Menu.Item name='home'>
                     <Segment basic>
                     <Header as="h2" color="yellow" inverted>Primely</Header>
@@ -59,7 +59,9 @@ class Layout extends Component {
                     </Menu.Item>
                     </Menu>
                 </Segment>
-                <StudentForm />
+                <Segment basic padded secondary textAlign="center">
+                    <StudentProfile />
+                </Segment>
                 </Sidebar.Pusher>
             </Sidebar.Pushable>
         </div>

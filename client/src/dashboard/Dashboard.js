@@ -5,8 +5,7 @@ import { Segment, Grid, Container, Header, Message,
 class Dashboard extends Component {
     render(){
         return (
-            <Segment basic padded secondary textAlign="center">
-                <Grid doubling stackable container columns={3} centered verticalAlign="middle">
+            <Grid doubling stackable container columns={3} centered verticalAlign="middle">
                 <Grid.Row>
                 <Message
                     icon='inbox'
@@ -98,7 +97,6 @@ class Dashboard extends Component {
                 </Grid.Column>
                 </Grid.Row>
             </Grid>
-            </Segment>
         )
     }
 }
