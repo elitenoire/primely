@@ -32,8 +32,8 @@ const student = {
         attended : {
           type : 'object',
           properties : {
-            from : { type : 'string'}, // need to add format for month
-            to : { type : 'string'}
+            from : { type : 'string', format : 'month'}, // need to add format for month
+            to : { type : 'string', format : 'month'}
           } ,
           required : ['to'],
           additionalProperties : false

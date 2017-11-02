@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken'
 
 const client = axios.create({
     baseURL: '/auth'
-  });
+});
 
 const auth = {}
 
