@@ -11,6 +11,8 @@ const steps = [
 
 // Need three states for step : completed, active, disabled
 
+
+//Pass mode and match : {params} prop to StudentForm
 class StudentNew extends Component {
     state = { disabled : false, active : true, completed : false }
 

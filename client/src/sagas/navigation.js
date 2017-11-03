@@ -1,4 +1,4 @@
-import { takeEvery, fork } from 'redux-saga/effects'
+import { takeEvery, fork , take, cancel} from 'redux-saga/effects'
 import { LOCATION_CHANGE } from 'react-router-redux'
 import { HOME_PATH, LOGIN_PATH, DASHBOARD_PATH } from '../routes/routes'
 import homeSaga from './home'
@@ -6,23 +6,26 @@ import loginSaga from './login'
 import dashboardSaga from './dashboard'
 import invalidRouteSaga from './invalid404'
 
-//import invalidRouteSaga from './RouteSagas/InvalidRouteSaga'
 
 function* manageNavigation({ payload : { pathname }}){
-    // yield all(Object.keys(routeToSagaMap).map( route => {
-    //     return takeEvery(pattern, changeRoute, actionRouteMap[pattern])
-    // }))
+
+    console.log('Location changed')
     console.log(pathname)
-    console.log(Object.keys(routeToSagaMap))
-    console.log(routeToSagaMap[pathname])
-    yield fork(routeToSagaMap[pathname] )//|| invalidRouteSaga) // undefined || invalidRouteSaga
+    //console.log(Object.keys(routeToSagaMap))
+
+    if(pathname.startsWith(DASHBOARD_PATH)){
+        console.log('Watching dashboard')
+        const dashboard = yield fork(dashboardSaga, pathname)
+        //yield take(LOCATION_CHANGE)
+        //yield cancel(dashboard) // undefined || invalidRouteSaga
+    }
+    else yield fork(routeToSagaMap[pathname] || invalidRouteSaga)
 }
 
 
 const routeToSagaMap = {
     [HOME_PATH] : homeSaga,
-    [LOGIN_PATH] : loginSaga,
-    [DASHBOARD_PATH] : dashboardSaga
+    [LOGIN_PATH] : loginSaga
 }
 
 // TODO : navigating to invalid route error handling/prevention

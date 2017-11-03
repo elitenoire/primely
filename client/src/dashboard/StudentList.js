@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { Label, Table, Image, Segment, Container, Icon, Header} from 'semantic-ui-react'
 import AvatarName from './AvatarName'
+import { getStudents } from '../actions'
 //For test purpose: Please refactor out when connected to redux store
 import { list } from './seed'
 
@@ -9,6 +11,12 @@ class StudentList extends Component {
         super()
         this.headers = ['#', 'Student', 'Gender', 'Email', 'Course', 'Location']
         this.colors = { alevels : 'violet', gcse : 'green', ufp : 'blue'}
+    }
+
+    componentDidMount(){
+        console.log('about to dispatch action')
+        this.props.getStudents()
+        console.log('get students in studentlist dispatched')
     }
 
     renderHeader = () => {
@@ -51,6 +59,7 @@ class StudentList extends Component {
     }
 
     render(){
+        const { students } = this.props
         return (
             <Container>
                 <Segment >
@@ -63,7 +72,7 @@ class StudentList extends Component {
                         </Table.Header>
 
                         <Table.Body>
-                            {this.renderRow(list)}
+                            {this.renderRow(students)}
                         </Table.Body>
                     </Table>
                 </Segment>
@@ -72,7 +81,12 @@ class StudentList extends Component {
     }
 }
 
-export default StudentList
+export default connect(
+    ({students : { students, isFetching}}) => ({ students, isFetching}),
+    { getStudents }
+)(
+    StudentList
+)
 
 
 

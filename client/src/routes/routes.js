@@ -1,3 +1,7 @@
 export const HOME_PATH = '/'
 export const LOGIN_PATH = '/admin/login'
 export const DASHBOARD_PATH = '/admin/dashboard'
+export const DASHBOARD_STUDENTS_PATH = '/admin/dashboard/students'
+export const DASHBOARD_STUDENTS_NEW_PATH = '/admin/dashboard/students/new'
+export const DASHBOARD_STUDENT_ONE_PATH = '/admin/dashboard/students/'
+export const DASHBOARD_STUDENT_EDIT_PATH = '/admin/dashboard/students/edit/'

@@ -6,6 +6,8 @@ import NextKin from './NextKin'
 import EduHistory from './EduHistory'
 import Courses from './Courses'
 
+import submitStudent from '../actions' //here or in studentNew component?
+
 class StudentForm extends Component {
     state = { step: 1  }
 
@@ -18,8 +20,9 @@ class StudentForm extends Component {
     }
 
     // Passed in as prop in example -> handles last step submission
-    onSubmit = (values) => {
-        console.log(values)
+    onSubmit = values => {
+        const { mode, submitStudent, match : {params} } = this.props
+        submitStudent(formName, values, mode, params.id)
     }
 
     render() {
