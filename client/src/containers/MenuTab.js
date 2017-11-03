@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { Button, Menu, Icon, Dropdown } from 'semantic-ui-react'
 import { toggleModal, selectMenuAction } from '../actions'
+import { ACCESS_TOKEN } from '../constants'
 
 const MenuTab = ({ isAuth, toggleModal, selectMenuAction }) => {
     return (
@@ -30,14 +31,9 @@ const createOptions = (cb) => {
     return [
         { key : 'admin', disabled : true, text : <span>Logged in as <strong>Admin</strong></span>},
         { key : 'dashboard', onClick : () => cb('DASHBOARD') , text : 'Dashboard', icon : 'settings'},
-        { key : 'logout', onClick : () => cb('LOGOUT', 'accessToken'), text : 'Log Out', icon : 'sign out'}
+        { key : 'logout', onClick : () => cb('LOGOUT', ACCESS_TOKEN), text : 'Log Out', icon : 'sign out'}
     ]
 }
-// const options = [
-//     { key : 'admin', disabled : true, text : <span>Logged in as <strong>Admin</strong></span>},
-//     { key : 'dashboard', onClick : () => selectMenuAction('DASHBOARD') , text : 'Dashboard', icon : 'settings'},
-//     { key : 'logout', onClick : () => selectMenuAction('LOGOUT', 'accessToken'), text : 'Log Out', icon : 'sign out'}
-// ]
 
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({ toggleModal, selectMenuAction }, dispatch)
@@ -45,6 +41,6 @@ const mapDispatchToProps = (dispatch) => {
 
 export default connect(
     ({ auth : { isAuth }}) => ({isAuth}),
-    { toggleModal, selectMenuAction } //mapDispatchToProps
+    { toggleModal, selectMenuAction }
 )(MenuTab)
 

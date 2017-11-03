@@ -13,11 +13,11 @@ const Home = ({ children }) => {
             style={{ minHeight: 600, border : 'none' }}
             vertical
             >
-                <Container>
+                <div>
                     <NavBar />
                     <Landing />
                     {children}
-                </Container>
+                </div>
             </Segment>
 
             <Segment basic inverted color="yellow" attached

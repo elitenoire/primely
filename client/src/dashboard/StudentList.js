@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Label, Table, Image, Segment, Container, Icon, Header} from 'semantic-ui-react'
 import AvatarName from './AvatarName'
+//For test purpose: Please refactor out when connected to redux store
+import { list } from './seed'
 
 class StudentList extends Component {
     constructor(){
@@ -23,7 +25,7 @@ class StudentList extends Component {
         ))
     }
 
-    renderRow = () => {
+    renderRow = (students) => {
         return Object.keys(students).reduce((list,id,index) => {
             const data = [index+1,
                 (<AvatarName
@@ -53,7 +55,7 @@ class StudentList extends Component {
             <Container>
                 <Segment >
                     <Table basic='very' columns={this.headers.length}
-                    padded collapsing selectable>
+                    padded stackable selectable>
                         <Table.Header>
                             <Table.Row>
                             {this.renderHeader()}
@@ -61,10 +63,9 @@ class StudentList extends Component {
                         </Table.Header>
 
                         <Table.Body>
-                            {this.renderRow()}
+                            {this.renderRow(list)}
                         </Table.Body>
                     </Table>
-
                 </Segment>
             </Container>
         )

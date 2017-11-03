@@ -18,6 +18,7 @@ export default function* manageLogin(){
         if(cancel){
             needLogin = false
             yield put(toggleModal('CLOSE'))
+            return
         }
         else {
             const { data, formName } = submit

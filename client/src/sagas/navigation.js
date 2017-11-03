@@ -15,7 +15,7 @@ function* manageNavigation({ payload : { pathname }}){
     console.log(pathname)
     console.log(Object.keys(routeToSagaMap))
     console.log(routeToSagaMap[pathname])
-    yield fork(routeToSagaMap[pathname] || invalidRouteSaga) // undefined || invalidRouteSaga
+    yield fork(routeToSagaMap[pathname] )//|| invalidRouteSaga) // undefined || invalidRouteSaga
 }
 
 

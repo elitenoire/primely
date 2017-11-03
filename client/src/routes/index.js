@@ -2,7 +2,7 @@ import React from 'react'
 import { Route, Switch, Redirect } from 'react-router-dom'
 import Home from '../components/Home'
 import LoginModal from '../containers/LoginModal'
-import Dashboard from '../dashboard/Layout'
+import Root from '../dashboard/Root'
 import { HOME_PATH, LOGIN_PATH, DASHBOARD_PATH } from './routes'
 import { ACCESS_TOKEN } from '../constants'
 import { auth } from '../utils'
@@ -13,7 +13,7 @@ const Router = (props) => {
         <Switch>
             <Route path={HOME_PATH} exact component={Home} />
             <AuthenticatedRoute path={LOGIN_PATH} redirect={DASHBOARD_PATH} component={Home} />
-            <AuthenticatedRoute path={DASHBOARD_PATH} redirect={LOGIN_PATH} component={Dashboard} />
+            <AuthenticatedRoute path={DASHBOARD_PATH} redirect={LOGIN_PATH} component={Root} />
             <Route render={() => null} />
         </Switch>
     )

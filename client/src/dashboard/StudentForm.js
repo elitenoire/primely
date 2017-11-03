@@ -32,19 +32,19 @@ class StudentForm extends Component {
                     onSubmit={this.nextStep}
                     />
                 )}
-                {step === 2 && (
+                {step === -5 && (
                     <NextKin
                     previousStep={this.previousStep}
                     onSubmit={this.nextStep}
                     />
                 )}
-                {step === 3 && (
+                {step === 2 && (
                     <EduHistory
                     previousStep={this.previousStep}
                     onSubmit={this.nextStep}
                     />
                 )}
-                {step === 4 && (
+                {step === 3 && (
                     <Courses
                     previousStep={this.previousStep}
                     onSubmit={this.onSubmit}

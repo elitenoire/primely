@@ -1,4 +1,4 @@
-import { CANCEL_LOGIN , SUBMIT_LOGIN } from '../constants'
+import { CANCEL_LOGIN , SUBMIT_LOGIN, GET_STUDENTS } from '../constants'
 
 export const toggleModal = (type) => {
     return {
@@ -24,5 +24,11 @@ export const selectMenuAction = (action, key = '') => {
     return {
         type : `SELECT_${action}`,
         key
+    }
+}
+
+export const getStudents = () => {
+    return {
+        type : GET_STUDENTS
     }
 }
