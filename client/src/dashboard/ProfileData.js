@@ -2,11 +2,12 @@ import React from 'react'
 import { Container, Segment, Header, List, Label} from 'semantic-ui-react'
 
 
-const ProfileData = props => {
+const ProfileData = ({ student, color }) => {
+    const { persona, courseSelection, eduHistory } = student
     return (
         <Container fluid>
             <Segment.Group>
-                <Segment color="brown">
+                <Segment color={color}>
                     <Header as="h3">Personal Details</Header>
                 </Segment>
                 <Segment.Group horizontal>

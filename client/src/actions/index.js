@@ -1,4 +1,5 @@
 import { CANCEL_LOGIN , SUBMIT_LOGIN, GET_STUDENTS, SUBMIT_STUDENT,
+    GET_STUDENT_SINGLE, EDIT_STUDENT, DELETE_STUDENT,
     CANCEL_DELETE_MODAL, TOGGLE_DELETE_MODAL, DELETE_STUDENT_MODAL } from '../constants'
 
 export const toggleModal = (type) => {
@@ -34,12 +35,33 @@ export const getStudents = () => {
     }
 }
 
+export const getSingleStudent = (id) => {
+    return {
+        type : GET_STUDENT_SINGLE,
+        id
+    }
+}
+
 export const submitStudent = (formName, student, mode, id = '') => {
     return {
         type : SUBMIT_STUDENT,
         formName,
         student,
         mode,
+        id
+    }
+}
+
+export const editStudent = (id) => {
+    return {
+        type : EDIT_STUDENT,
+        id
+    }
+}
+
+export const deleteStudent = (id) => {
+    return {
+        type : DELETE_STUDENT,
         id
     }
 }

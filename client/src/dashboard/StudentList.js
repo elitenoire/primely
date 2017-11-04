@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Link, NavLink } from 'react-router-dom'
 import { Label, Table, Image, Segment, Container, Icon, Header} from 'semantic-ui-react'
 import AvatarName from './AvatarName'
 import { getStudents } from '../actions'
@@ -25,10 +26,11 @@ class StudentList extends Component {
         ))
     }
 
-    renderCell = (data) => {
+    renderCell = (data, id) => {
+        const { match } = this.props
         return data.map((field, index) => (
             <Table.Cell key={`cell-${index}`}>
-                {field}
+                <NavLink activeClassName="active" to={`${match.path}/${id}`}>{field}</NavLink>
             </Table.Cell>
         ))
     }
@@ -51,7 +53,7 @@ class StudentList extends Component {
 
             list.push(
                 <Table.Row key={`row-${index}`}>
-                    {this.renderCell(data)}
+                    {this.renderCell(data, id)}
                 </Table.Row>
             )
             return list

@@ -8,7 +8,9 @@ import { ACCESS_TOKEN } from '../constants'
 import { auth } from '../utils'
 
 const Router = (props) => {
-    console.log('props in Router ', props)
+    console.log('props is ', props)
+    console.log('location in router is ', props.location)
+    console.log('In main route, will redirect if not auth')
     return (
         <Switch>
             <Route path={HOME_PATH} exact component={Home} />

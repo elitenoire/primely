@@ -9,7 +9,7 @@ import invalidRouteSaga from './invalid404'
 
 function* manageNavigation({ payload : { pathname }}){
 
-    console.log('Location changed')
+    console.log('Location changed to ')
     console.log(pathname)
     //console.log(Object.keys(routeToSagaMap))
 
@@ -20,6 +20,7 @@ function* manageNavigation({ payload : { pathname }}){
         //yield cancel(dashboard) // undefined || invalidRouteSaga
     }
     else yield fork(routeToSagaMap[pathname] || invalidRouteSaga)
+    return
 }
 
 
@@ -37,4 +38,5 @@ const routeToSagaMap = {
 //WATCHER SAGA - listen for dispatched action, call worker to handle action
 export default function* watchNavigation(){
     yield takeEvery(LOCATION_CHANGE, manageNavigation)
+    console.log('watcher detected location change')
 }

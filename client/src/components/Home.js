@@ -10,7 +10,7 @@ const Home = ({ children }) => {
         <div>
             <Segment basic inverted color="brown" attached="top"
             textAlign="center"
-            style={{ minHeight: 600, border : 'none' }}
+            style={{ minHeight: 600, padding : '1em 0em', border : 'none' }}
             vertical
             >
                 <div>

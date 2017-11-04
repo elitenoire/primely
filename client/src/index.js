@@ -10,7 +10,8 @@ import createReduxSaga from 'redux-saga';
 import { ConnectedRouter, routerMiddleware } from 'react-router-redux'
 import createHistory from 'history/createBrowserHistory' // inferred from react-router-dom
 
-import App from './components/App'
+//import App from './components/App'
+import App from './routes'
 import reducers from './reducers';
 import rootSaga from './sagas';
 import { auth } from './utils'

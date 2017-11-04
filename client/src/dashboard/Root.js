@@ -4,7 +4,7 @@ import Layout from './Layout'
 import Dashboard from './Dashboard'
 import StudentList from './StudentList'
 import StudentProfile from './StudentProfile'
-import StudentNew from './StudentNew'
+import StudentSave from './StudentSave'
 
 const Root = ({ match }) => {
     return (
@@ -12,8 +12,10 @@ const Root = ({ match }) => {
             <Switch>
                 <Route exact path={match.path} component={Dashboard}  />
                 <Route exact path={`${match.path}/students`} component={StudentList}  />
-                <Route path={`${match.path}/students/new`} component={StudentNew}  />
-                <Route path={`${match.url}/students/edit/:id`} component={StudentNew}  />
+                <Route path={`${match.path}/students/new`} 
+                    render={props => <StudentSave {...props} mode="CREATE"/>}  />
+                <Route path={`${match.url}/students/edit/:id`}
+                    render={props => <StudentSave {...props} mode="UPDATE" />}  />
                 <Route path={`${match.url}/students/:id`} component={StudentProfile}  />
             </Switch>
         </Layout>

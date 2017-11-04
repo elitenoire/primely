@@ -10,7 +10,7 @@ function* deleteSingleStudent(id){
         yield put({type : DELETE_STUDENT_FAIL, error})
     }
     else {
-        yield put({type : DELETE_STUDENT_PASS })
+        yield put({type : DELETE_STUDENT_PASS , method : 'replace'})
         yield put({type : DELETE_STUDENT_CACHE, id }) //delete from local cache
     }
 }
