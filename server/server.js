@@ -2,11 +2,12 @@ const express = require('express')
 const bodyParser= require('body-parser');
 const studentRouter = require('./routes/students')
 const { authLogin } = require('./middlewares/auth')
+const { mongoURI } = require('./config/auth')
 //require mongoose
 const mongoose = require('mongoose')
 //create mongoose Promises using es6 Promise library
 mongoose.Promise = global.Promise
-mongoose.connect('mongodb://localhost/primely')
+mongoose.connect(mongoURI)
     .then(() => {
         console.log('Connected to Mongodb, success!')
     })
