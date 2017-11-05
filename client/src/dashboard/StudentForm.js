@@ -5,20 +5,23 @@ import Persona from './Persona'
 //import NextKin from './NextKin'
 import EduHistory from './EduHistory'
 import Courses from './Courses'
+import { watchForm } from '../actions'
 
 //import submitStudent from '../actions' //here or in studentNew component?
 
 class StudentForm extends Component {
     componentDidMount(){
+        this.props.watchForm()
         this.props.initialize(this.props.initData)
     }
     render(){
-    const { id, step, nextStep, previousStep, onSubmit} = this.props
+    const { id, step, nextStep, previousStep, onSubmit, onCancel} = this.props
     return (
         <div>
             {step === 1 && (
                 <Persona 
                 onSubmit={nextStep}
+                onCancel={onCancel}
                 sid={id}
                 />
             )}
@@ -32,6 +35,7 @@ class StudentForm extends Component {
                 <EduHistory
                 previousStep={previousStep}
                 onSubmit={nextStep}
+                onCancel={onCancel}
                 sid={id}
                 />
             )}
@@ -39,6 +43,7 @@ class StudentForm extends Component {
                 <Courses
                 previousStep={previousStep}
                 onSubmit={onSubmit}
+                onCancel={onCancel}
                 sid={id}
                 />
             )}
@@ -56,7 +61,8 @@ const formName = 'student'
 export default connect(
     (state, ownProps) => ({
         initData : state.students[ownProps.id]
-    })
+    }),
+    { watchForm }
 )(reduxForm({
     form: formName, //helps to clear out form when unmounted like cancelling/navigating away
     destroyOnUnmount: false,

@@ -35,7 +35,9 @@ const studentSchema = new Schema({
     courseSelection : {
         degree : String,
         course : String,
-        subjects : [String]
+        ALevelsSub : {type : [String], required : false},
+        GCSESub : {type : [String], required : false},
+        UFPSub : {type : String, required : false}
     },
     admin : [adminSchema],
     createdAt : { type: Date, default: Date.now },

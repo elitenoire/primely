@@ -36,7 +36,7 @@ const authLogin = (req, res) => {
     if (isValidPassword && isValidUsername ){
         const tokenData = {username : req.body.username.trim()}
         return res.status(200).json({
-            token : jwt.sign( tokenData, SECRET_KEY, { expiresIn : '1h'}), //60 * 60 * 1
+            token : jwt.sign( tokenData, SECRET_KEY, { expiresIn : '24h'}), //60 * 60 * 1
             success : true,
             message : 'Welcome Admin',
             currentLogTime : Date.now(),

@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
-import { Grid, Menu, Icon} from 'semantic-ui-react'
+import { Grid, Menu, Icon, Container} from 'semantic-ui-react'
 import { getSingleStudent, deleteStudent, editStudent,
     cancelModal, openModal } from '../actions'
 import ProfileCard from './ProfileCard'
@@ -76,7 +76,7 @@ class StudentProfile extends Component {
                 )}
             </Grid.Column>
 
-            <Grid.Column width={9}>
+            <Grid.Column  stretched width={9}>
                 { fetched && (<ProfileData color="brown" student={student} />) }
             </Grid.Column>
         </Grid>

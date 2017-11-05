@@ -23,7 +23,7 @@ const courseSelectSchema = {
     selectCases : {
         ALevels : {
             properties : {
-                alevelsSub : {items : {
+                ALevelsSub : {items : {
                 anyOf : [
                 { $ref : 'selectCourse#/definitions/alevels'},
                 { $ref : 'selectCourse#/definitions/common'}
@@ -35,12 +35,12 @@ const courseSelectSchema = {
         },
         UFP : {
             properties : {
-                ufpSub : { $ref : 'selectCourse#/definitions/ufp'}
+                UFPSub : { $ref : 'selectCourse#/definitions/ufp'}
             }
         },
         GCSE : {
             properties : {
-                gcseSub : {items : {
+                GCSESub : {items : {
                 anyOf : [
                 { $ref : 'selectCourse#/definitions/gcse'},
                 { $ref : 'selectCourse#/definitions/common'}

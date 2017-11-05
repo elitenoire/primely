@@ -8,9 +8,9 @@ import { validate } from '../utils'
 
 
 //recieve value and onChange prop else make it a class to manage internal state
-const Persona = ({ handleSubmit, sid , stud}) => {
-    console.log('Sid is ', sid)
-    console.log(stud)
+const Persona = ({ handleSubmit, onCancel, sid , stud, fieldList}) => {
+    console.log('Stu iniitial values is ', stud)
+    console.log(fieldList)
     return (
         <Form onSubmit={handleSubmit}>
             <Segment color="green" style={{minHeight : 300}}>
@@ -32,7 +32,7 @@ const Persona = ({ handleSubmit, sid , stud}) => {
                 </FormSection>
             </Segment>
 
-            <Button type='button' color="red">Cancel</Button>
+            <Button onClick={onCancel} type='button' color="red">Cancel</Button>
             <Button type='submit' color="yellow">Next</Button>
     </Form>
     )
@@ -59,8 +59,8 @@ export default connect(
         form: "student",
         destroyOnUnmount: false,
         forceUnregisterOnUnmount: true,
-        keepDirtyOnReinitialize: true,
-        enableReinitialize: true,
+        //keepDirtyOnReinitialize: true,
+        //enableReinitialize: true,
         validate: validate(fields)
     }
 )(

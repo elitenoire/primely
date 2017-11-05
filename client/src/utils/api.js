@@ -65,7 +65,11 @@ api.saveStudent = async (student, method, id = '') => {
       return { response }
   }
   catch(err){
-      return {error : err.message}
+    if(err.response){
+      return {error : err.response.data}
+      //return {error : {success : 'false' , _error : 'Something went wrong, please refresh'}}
+  }
+  return {error : {success : 'false' , _error : 'Something went wrong, please refresh'}}
   }
 }
 

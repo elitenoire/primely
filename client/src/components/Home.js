@@ -26,12 +26,13 @@ const Home = ({ children }) => {
             >
             <Header as="h2" color="red" >DASHBOARD FEATURES</Header>
 
-            <Statistic.Group widths={4}>
-                <Statistic label='Create' value='22' />
-                <Statistic label='View' value='Three' text />
-                <Statistic label='Change' value='5' />
-                <Statistic label='Delete' value='5' />
+            <Statistic.Group widths={2}>
+                <Statistic  value='Create' text />
+                <Statistic  value='View' text />
+                <Statistic  value='Edit' text />
+                <Statistic  value='Delete' text />
             </Statistic.Group>
+
 
             </Segment>
 

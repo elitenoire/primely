@@ -8,11 +8,11 @@ import { alevels, gcse, ufp, common, degree, courses } from '../utils/choices'
 
 // NOTE : In schema required are degree, course
 
-const Courses = ({ sid, course, subjects, handleSubmit, previousStep , onSubmit}) => {
+const Courses = ({ sid, course, subjects, onCancel, handleSubmit, previousStep , onSubmit}) => {
 console.log(course)
 console.log(subjects)
     return (
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit(onSubmit)}>
             <Segment color="green" style={{minHeight : 300}}>
                 <FormSection name="courseSelection">
                     <Field name="degree" id="degree-1" component={DropdownField} required
@@ -35,8 +35,8 @@ console.log(subjects)
                 </FormSection>
             </Segment>
             <Button onClick={previousStep} type='button' color="brown" floated="left">Back</Button>
-            <Button type='button' color="red">Cancel</Button>
-            <Button onClick={onSubmit} type='submit' color="yellow">Submitt</Button>
+            <Button onClick={onCancel} type='button' color="red">Cancel</Button>
+            <Button type='submit' color="yellow">Submit</Button>
         </Form>
     )
 }
@@ -62,24 +62,24 @@ const minValue7 = minValue(7)
 
 
 const subjectMap = {
-    alevels: alevels.concat(common),
-    gcse: gcse.concat(common),
-    ufp
+    ALevels: alevels.concat(common),
+    GCSE: gcse.concat(common),
+    UFP : ufp
 }
 
 const restrictions = {
-    alevels: { multiple : true, label : 'Choose from 3 to 5 A-Level subjects',
+    ALevels: { multiple : true, label : 'Choose from 3 to 5 A-Level subjects',
         validate : [required, minValue3, maxValue5]},
-    gcse: { multiple : true, label: 'Choose from 7 to 9 GCSE subjects',
+    GCSE: { multiple : true, label: 'Choose from 7 to 9 GCSE subjects',
         validate : [required, minValue7, maxValue9]},
-    ufp: { multiple : false, label: 'Choose a Foundation Programme relevant to your degree Field',
+    UFP: { multiple : false, label: 'Choose a Foundation Programme relevant to your degree Field',
         validate : [required] }
 }
 
 const colorLabel = {
-    alevels : {color : 'violet'},
-    gcse: { color: 'green' },
-    ufp: { color: 'blue' }
+    ALevels : {color : 'violet'},
+    GCSE: { color: 'green' },
+    UFP: { color: 'blue' }
 }
 
 
@@ -89,8 +89,8 @@ const selector = formValueSelector("student")
 export default connect(
     (state, ownProps) => ({
         course: selector(state, "courseSelection.course"),
-        subjects: selector(state, "courseSelection.gcseSub",
-                    "courseSelection.ufpSub", "courseSelection.alevelsSub"),
+        subjects: selector(state, "courseSelection.GCSESub",
+                    "courseSelection.UFPSub", "courseSelection.ALevelsSub"),
         initialValues : state.students[ownProps.sid]
     }),
     null
@@ -100,7 +100,7 @@ export default connect(
             form: "student",
             destroyOnUnmount: false,
             forceUnregisterOnUnmount: true,
-            keepDirtyOnReinitialize: true,
+            //keepDirtyOnReinitialize: true,
             enableReinitialize: true
         }
     )(

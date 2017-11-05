@@ -1,7 +1,11 @@
 import React from 'react'
 import { Container, Segment, Header, List, Label} from 'semantic-ui-react'
 
-const listHelper = (list) => {
+const listHelper = (subjects) => {
+    let list = subjects
+    if(typeof subjects === 'string'){
+        list = [subjects]
+    }
     return list.map((subject,index) => {
         return (
             <List.Item key={`sub-${index}`}><Label color="yellow">{subject}</Label></List.Item>
@@ -20,33 +24,33 @@ const ProfileData = ({ student, color }) => {
                     <Header as="h3">Personal Details</Header>
                 </Segment>
                 <Segment.Group horizontal>
-                    <Segment compact>
+                    <Segment >
                         <Header as="h6" sub>Name</Header>
                         {`${persona.name.firstName} ${persona.name.middleName || ''} ${persona.name.lastName}`}
                     </Segment>
-                    <Segment compact>
+                    <Segment >
                         <Header as="h6" sub>Gender</Header>
                         {gender}
                     </Segment>
-                    <Segment compact>
+                    <Segment >
                         <Header sub>DOB</Header>
                         {birthdate}
                     </Segment>
-                    <Segment compact>
+                    <Segment >
                         <Header sub>Nationality</Header>
                         {nationality}
                     </Segment>
                 </Segment.Group>
                 <Segment.Group horizontal>
-                    <Segment compact>
+                    <Segment >
                         <Header as="h6" sub>Email</Header>
                         {email}
                         </Segment>
-                    <Segment compact>
+                    <Segment >
                         <Header as="h6" sub>Phone</Header>
                         {phone}
                     </Segment>
-                    <Segment compact>
+                    <Segment >
                         <Header as="h6" sub>Address</Header>
                         {`${address.addr1}, ${address.addr2 || ''} ${address.city}, ${address.state}`}
                     </Segment>
@@ -55,7 +59,7 @@ const ProfileData = ({ student, color }) => {
                     <Header as="h3">Educational History</Header>
                 </Segment>
                 <Segment.Group horizontal>
-                    <Segment compact>
+                    <Segment >
                         <Header as="h6" sub>School</Header>
                         {`${school}, ${state}`}
                     </Segment>
@@ -63,7 +67,7 @@ const ProfileData = ({ student, color }) => {
                         <Header as="h6" sub>Certificate</Header>
                         {cert}
                     </Segment>
-                    <Segment compact>
+                    <Segment >
                         <Header as="h6" sub>Attended</Header>
                         {`From :${attended.from || ''}`}
                         {'  '}
@@ -74,18 +78,18 @@ const ProfileData = ({ student, color }) => {
                     <Header as="h3">Course</Header>
                 </Segment>
                 <Segment.Group horizontal>
-                    <Segment compact>
+                    <Segment >
                         <Header as="h6" sub>Degree</Header>
                         {courseSelection.degree}
                     </Segment>
-                    <Segment compact>
+                    <Segment >
                         <Header as="h6" sub>Course</Header>
                         {courseSelection.course}
                     </Segment>
-                    <Segment compact>
+                    <Segment >
                         <Header as="h6" sub>Subjects</Header>
                         <List horizontal>
-                            {listHelper(courseSelection.subjects)}
+                            {listHelper(courseSelection[`${courseSelection.course}Sub`])}
                         </List>
                     </Segment>
                 </Segment.Group>

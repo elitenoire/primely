@@ -31,6 +31,21 @@ const feedParser = (students) => {
     }, [])
 }
 
+// const parseServerData = (student) => {
+//     const { course, subjects } = student.courseSelection
+//     if(course === 'ALevels'){
+//         student.courseSelection['alevelsSub'] = subjects
+
+//     }
+//     if(course === 'GCSE'){
+//         student.courseSelection['gcseSub'] = subjects
+//     }
+//     if(course === 'UFP'){
+//         student.courseSelection['ufpSub'] = subjects[0]
+//     }
+//     return student
+// }
+
 // Validate Form
 const validate = fields => values => {
     return fields.reduce((errors, field) => {

@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import { Step, Segment, Header } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import StudentForm from './StudentForm'
-import { submitStudent } from '../actions' //here or in studentNew component?
+import { submitStudent, cancelStudent } from '../actions' //here or in studentNew component?
 
 
 
@@ -20,6 +20,11 @@ class StudentSave extends Component {
     onSubmit = values => {
         const { mode, submitStudent, match : {params} } = this.props
         submitStudent(formName, values, mode, params.id)
+    }
+
+    onCancel = () => {
+        const { mode, cancelStudent, match : {params} } = this.props
+        cancelStudent(formName, mode, params.id)
     }
 
     renderSteps = () => {
@@ -55,6 +60,7 @@ class StudentSave extends Component {
                         nextStep={this.nextStep}
                         previousStep={this.previousStep}
                         onSubmit={this.onSubmit}
+                        onCancel={this.onCancel}
                         step={this.state.step}
                         id={params.id}
                     />
@@ -66,4 +72,4 @@ class StudentSave extends Component {
 
 const formName = 'student'
 
-export default connect(null, {submitStudent} )(StudentSave)
+export default connect(null, {submitStudent, cancelStudent} )(StudentSave)

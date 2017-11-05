@@ -9,7 +9,7 @@ class StudentList extends Component {
     constructor(){
         super()
         this.headers = ['#', 'Student', 'Gender', 'Email', 'Course', 'Location']
-        this.colors = { alevels : 'violet', gcse : 'green', ufp : 'blue'}
+        this.colors = { ALevels : 'violet', GCSE : 'green', UFP : 'blue'}
     }
 
     componentDidMount(){

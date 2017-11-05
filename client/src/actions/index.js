@@ -1,6 +1,7 @@
 import { CANCEL_LOGIN , SUBMIT_LOGIN, GET_STUDENTS, SUBMIT_STUDENT,
-    GET_STUDENT_SINGLE, EDIT_STUDENT, DELETE_STUDENT,
-    CANCEL_DELETE_MODAL, TOGGLE_DELETE_MODAL, DELETE_STUDENT_MODAL } from '../constants'
+    GET_STUDENT_SINGLE, EDIT_STUDENT, DELETE_STUDENT, CANCEL_STUDENT,
+    CANCEL_DELETE_MODAL, TOGGLE_DELETE_MODAL, DELETE_STUDENT_MODAL,
+    STUDENT_FORM } from '../constants'
 
 export const toggleModal = (type) => {
     return {
@@ -11,6 +12,11 @@ export const toggleModal = (type) => {
 export const cancelLogin = () => {
     return {
         type : CANCEL_LOGIN
+    }
+}
+export const watchForm = () => {
+    return {
+        type : STUDENT_FORM
     }
 }
 
@@ -47,6 +53,15 @@ export const submitStudent = (formName, student, mode, id = '') => {
         type : SUBMIT_STUDENT,
         formName,
         student,
+        mode,
+        id
+    }
+}
+
+export const cancelStudent = (formName, mode, id= '') => {
+    return {
+        type : CANCEL_STUDENT,
+        formName,
         mode,
         id
     }

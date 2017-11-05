@@ -41,7 +41,6 @@ export default function* manageLogin(){
                 yield put({ type : LOGIN_ADMIN_FAIL, logInError : error })
                 yield put(stopSubmit(formName, errors))
             }
-            
         }
     }
 }

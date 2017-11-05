@@ -1,6 +1,6 @@
-import { takeLatest, call, put, fork, race, take } from 'redux-saga/effects'
+import { call, put, fork, race, take } from 'redux-saga/effects'
 import { DELETE_STUDENT, DELETE_STUDENT_FAIL, CANCEL_DELETE_MODAL,
-    DELETE_STUDENT_CACHE, DELETE_STUDENT_PASS, DELETE_STUDENT_MODAL } from '../constants'
+    DELETE_STUDENT_CACHE, DELETE_STUDENT_PASS } from '../constants'
 import { showModal } from '../actions'
 import { api } from '../utils'
 
@@ -15,7 +15,7 @@ function* deleteSingleStudent(id){
     }
 }
 
-function* deleteStudentCheck(){
+export default function* deleteStudentCheck(){
     yield put(showModal(true))
     //wait for UI to cancel or approve delete from modal
     console.log('Delete modal is open!')
@@ -35,12 +35,12 @@ function* deleteStudentCheck(){
 
 
 //WATCHER SAGA - listen for dispatched action, call worker to handle action
-export default function* watchDeleteStudent(){
-    // takeEvery  - listen for every delete request which might cause error if previous
-    // request already succeeded
-    // takeLatest - cancel previous listener since user can delete in two places
-    console.log('Will watch for delete request')
-    yield takeLatest(DELETE_STUDENT_MODAL, deleteStudentCheck)
-    console.log('Seen a delete request!')
-}
+// export default function* watchDeleteStudent(){
+//     // takeEvery  - listen for every delete request which might cause error if previous
+//     // request already succeeded
+//     // takeLatest - cancel previous listener since user can delete in two places
+//     console.log('Will watch for delete request')
+//     yield takeLatest(DELETE_STUDENT_MODAL, deleteStudentCheck)
+//     console.log('Seen a delete request!')
+// }
 
