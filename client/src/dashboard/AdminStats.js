@@ -13,11 +13,11 @@ const AdminStats = ({loading, students}) => {
                 <Label color="red" ribbon icon="pin" content="Overview"/>
                 <span style={{ color: '#000', fontWeight: 'bold' }}>Enrolled Students</span>
             </Segment>
-            {loading || Object.keys(students).length === 0 && (
+            {loading && Object.keys(students).length === 0 && (
                 <Segment attached color="yellow" textAlign="center" tertiary inverted style={{ border: 'none' }}>
                     Fetching students stats...
                 </Segment>)}
-            {!loading && generateStats(fields, filterCourse(students))}
+            {!loading && Object.keys(students).length !== 0 && generateStats(fields, filterCourse(students))}
             <Segment attached="bottom" color="brown" tertiary inverted style={{ border: 'none' }}></Segment>
             </Segment>
         </Container>

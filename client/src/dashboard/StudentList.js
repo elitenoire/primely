@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Link, NavLink } from 'react-router-dom'
-import { Label, Table, Image, Segment, Container, Icon, Header} from 'semantic-ui-react'
+import { NavLink } from 'react-router-dom'
+import { Label, Table, Segment, Container} from 'semantic-ui-react'
 import AvatarName from './AvatarName'
 import { getStudents } from '../actions'
 

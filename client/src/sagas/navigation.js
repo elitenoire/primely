@@ -1,4 +1,4 @@
-import { takeEvery, fork , take, call, put, cancel} from 'redux-saga/effects'
+import { takeEvery, fork , take, call, put } from 'redux-saga/effects'
 import { LOCATION_CHANGE } from 'react-router-redux'
 import { HOME_PATH, LOGIN_PATH, DASHBOARD_PATH } from '../routes/routes'
 import { LOGOUT_ADMIN_PASS, SELECT_LOGOUT } from '../constants'
@@ -11,15 +11,8 @@ import invalidRouteSaga from './invalid404'
 
 function* manageNavigation({ payload : { pathname }}){
 
-    console.log('Location changed to ')
-    console.log(pathname)
-    //console.log(Object.keys(routeToSagaMap))
-
     if(pathname.startsWith(DASHBOARD_PATH)){
-        console.log('Watching dashboard')
-        const task = yield fork(manageLogout)
-        //yield take(LOCATION_CHANGE)
-        //yield cancel(dashboard) // undefined || invalidRouteSaga
+        yield fork(manageLogout)
     }
     else yield fork(routeToSagaMap[pathname] || invalidRouteSaga)
     return

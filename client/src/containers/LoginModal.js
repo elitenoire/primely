@@ -64,8 +64,6 @@ const validate = values => {
 }
 
 const onSubmit = (values, dispatch) => {
-    console.log(values)
-    alert(values)
     dispatch(submitLoginData(values, formName))
 }
 
