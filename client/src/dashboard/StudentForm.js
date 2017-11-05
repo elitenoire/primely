@@ -2,12 +2,10 @@ import React, { Component } from 'react'
 import { reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
 import Persona from './Persona'
-//import NextKin from './NextKin'
 import EduHistory from './EduHistory'
 import Courses from './Courses'
 import { watchForm } from '../actions'
 
-//import submitStudent from '../actions' //here or in studentNew component?
 
 class StudentForm extends Component {
     componentDidMount(){
@@ -25,12 +23,6 @@ class StudentForm extends Component {
                 sid={id}
                 />
             )}
-            {/* {step === -5 && (
-                <NextKin
-                previousStep={previousStep}
-                onSubmit={nextStep}
-                />
-            )} */}
             {step === 2 && (
                 <EduHistory
                 previousStep={previousStep}

@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux'
 import {Field, FormSection, reduxForm } from 'redux-form'
 import { Form, Button, Segment } from 'semantic-ui-react'
 import { InputField } from 'react-semantic-redux-form'
