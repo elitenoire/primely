@@ -32,9 +32,9 @@ const authChecker = (req, res, next) => {
 const authLogin = (req, res) => {
     // Generate token only if login data is valid
     const isValidPassword = req.body.password === user.password
-    const isValidUsername = req.body.username.trim().length !== 6
+    const isValidUsername = req.body.username.trim().length === 6
     if (isValidPassword && isValidUsername ){
-        const tokenData = {username : user.username.trim()}
+        const tokenData = {username : req.body.username.trim()}
         return res.status(200).json({
             token : jwt.sign( tokenData, SECRET_KEY, { expiresIn : '1h'}), //60 * 60 * 1
             success : true,

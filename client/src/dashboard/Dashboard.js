@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { Segment, Grid, Container, Header, Message,
-        Button, Feed, Icon, Label, Statistic } from 'semantic-ui-react'
+        Button, Icon } from 'semantic-ui-react'
 import AdminFeed from './AdminFeed'
 import AdminStats from './AdminStats'
 import { getStudents } from '../actions'

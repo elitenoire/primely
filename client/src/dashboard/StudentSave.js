@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
-import { Step, Segment, Form, Button, Header, Divider, Radio } from 'semantic-ui-react'
+import { Step, Segment, Header } from 'semantic-ui-react'
+import { connect } from 'react-redux'
 import StudentForm from './StudentForm'
-import submitStudent from '../actions' //here or in studentNew component?
+import { submitStudent } from '../actions' //here or in studentNew component?
 
 
 
@@ -31,7 +32,6 @@ class StudentSave extends Component {
 
     nextStep = () => {
         const newStep = this.state.step + 1
-        //if(newStep > 3) return
         let newState = { persona: this.past, eduhistory: this.present }
         if(newStep === 3)  {newState = {eduhistory : this.past, courses : this.present}}
         this.setState({ ...this.state, step: newStep, ...newState })
@@ -39,17 +39,16 @@ class StudentSave extends Component {
 
     previousStep = () => {
         const newStep = this.state.step - 1
-        //if(newStep < 1) return
         let newState = { persona: this.present, eduhistory: this.future }
         if(newStep === 2) {newState = {eduhistory : this.present, courses : this.future}}
         this.setState({ ...this.state, step: newStep, ...newState })
     }
 
     render() {
-    const { mode } = this.props
+    const { mode , match : {params} } = this.props
     return (
             <Segment basic textAlign="center">
-                <Header>{`${mode} Form`}</Header>
+                <Header>{`${mode} FORM`}</Header>
                 <Step.Group attached="top" items={this.renderSteps()} stackable="tablet" ordered/>
                 <Segment stacked attached textAlign="right" style={{ minHeight: 500}}>
                     <StudentForm
@@ -57,6 +56,7 @@ class StudentSave extends Component {
                         previousStep={this.previousStep}
                         onSubmit={this.onSubmit}
                         step={this.state.step}
+                        id={params.id}
                     />
                 </Segment>
             </Segment>
@@ -66,4 +66,4 @@ class StudentSave extends Component {
 
 const formName = 'student'
 
-export default StudentSave
+export default connect(null, {submitStudent} )(StudentSave)

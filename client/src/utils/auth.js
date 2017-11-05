@@ -32,7 +32,7 @@ auth.getTokenFromStorage = (key = 'token') => {
 
 // Check if user is authenticated
 auth.isUserAuthenticated = (key = 'token') => {
-    const decodedToken = jwt.decode(auth.getTokenFromStorage(key))
+    const decodedToken = auth.decodeToken(key)
     return decodedToken && (decodedToken.exp > Date.now() / 1000)
     //return auth.getTokenFromStorage(key) !== null
 }
@@ -48,6 +48,11 @@ auth.authenticateUser = (key = 'token', token) => {
 // deauthenticate user -> Log Out
 auth.deauthenticateUser = (key = 'token') => {
     localStorage.removeItem(key)
+}
+
+// Decode token
+auth.decodeToken = (key = 'token') => {
+    return jwt.decode(auth.getTokenFromStorage(key)) || null
 }
 
 export { auth }

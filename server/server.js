@@ -1,7 +1,7 @@
 const express = require('express')
 const bodyParser= require('body-parser');
-const studentRouter = require('./middlewares/students')
-const { authChecker, authLogin } = require('./middlewares/auth')
+const studentRouter = require('./routes/students')
+const { authLogin } = require('./middlewares/auth')
 //require mongoose
 const mongoose = require('mongoose')
 //create mongoose Promises using es6 Promise library
@@ -12,7 +12,7 @@ mongoose.connect('mongodb://localhost/primely')
     })
     .catch(error => console.warn('Warning!', error))
 
-const PORT =  process.env.PORT || 5000
+const PORT =  process.env.PORT || 5001
 
 const app = express()
 // tell the app to look for static files in these directories
@@ -31,11 +31,9 @@ app.post('/auth/login', authLogin )
 
 
 
-// app.set('port' , PORT)
-// app.get('port') => returns PORT
 
 //use middlewares
-//app.use(authChecker)
+//app.use(authChecker) doesn't always work
 app.use(studentRouter)
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`))

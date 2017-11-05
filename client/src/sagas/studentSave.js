@@ -34,6 +34,4 @@ function* studentSaver({type, student, formName, id, mode}){
 
 export default function* manageStudentSave(){
     const task = yield takeLatest(SUBMIT_STUDENT, studentSaver)
-    yield take(LOCATION_CHANGE)
-    yield cancel(task)
 }

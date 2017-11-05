@@ -18,6 +18,7 @@ function* deleteSingleStudent(id){
 function* deleteStudentCheck(){
     yield put(showModal(true))
     //wait for UI to cancel or approve delete from modal
+    console.log('Delete modal is open!')
     const { deleteOk } = yield race(
         {
             deleteOk: take(DELETE_STUDENT),
@@ -28,7 +29,7 @@ function* deleteStudentCheck(){
     if(deleteOk){
         yield fork(deleteSingleStudent, deleteOk.id)
     }
-    //close modal 
+    //close modal
     yield put(showModal(false))
 }
 
@@ -38,19 +39,8 @@ export default function* watchDeleteStudent(){
     // takeEvery  - listen for every delete request which might cause error if previous
     // request already succeeded
     // takeLatest - cancel previous listener since user can delete in two places
+    console.log('Will watch for delete request')
     yield takeLatest(DELETE_STUDENT_MODAL, deleteStudentCheck)
+    console.log('Seen a delete request!')
 }
-
-// Consider this code to handle multiple delete request from a list, maybe
-//
-// export default function* watchDeleteStudent() {
-//     // 1- Create a channel for request actions
-//     const requestChan = yield actionChannel(DELETE_STUDENT)
-//     while (true) {
-//       // 2- take from the channel
-//       const { id } = yield take(requestChan)
-//       // 3- Note that we're using a blocking call
-//       yield call(deleteSingleStudent, id)
-//     }
-//   }
 

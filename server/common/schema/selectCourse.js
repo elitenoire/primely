@@ -1,4 +1,4 @@
-import { degree, course, common, alevels, gcse, ufp } from './choices'
+const { degree, course, common, alevels, gcse, ufp } = require('./choices')
 
 const courseSelectSchema = {
     $id : 'selectCourse',
@@ -21,7 +21,7 @@ const courseSelectSchema = {
     },
     select : { $data : '0/course'},
     selectCases : {
-        alevels : {
+        ALevels : {
             properties : {
                 alevelsSub : {items : {
                 anyOf : [
@@ -33,12 +33,12 @@ const courseSelectSchema = {
                 }
             }
         },
-        ufp : {
+        UFP : {
             properties : {
                 ufpSub : { $ref : 'selectCourse#/definitions/ufp'}
             }
         },
-        gcse : {
+        GCSE : {
             properties : {
                 gcseSub : {items : {
                 anyOf : [
@@ -52,4 +52,4 @@ const courseSelectSchema = {
     }
 }
 
-export default courseSelectSchema
+module.exports = courseSelectSchema

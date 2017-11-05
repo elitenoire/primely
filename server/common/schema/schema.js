@@ -1,7 +1,7 @@
-import profileSchema from './profile'
-import selectCourseSchema from './selectCourse'
+const profileSchema = require('./profile')
+const selectCourseSchema = require('./selectCourse')
 
-const student = {
+const schema = {
   $id : 'studentForm',
   definitions : {
     profile : profileSchema,
@@ -18,7 +18,7 @@ const student = {
             nationality : { type : 'string'}
           },
           required : ['gender', 'birthdate', 'nationality'],
-          additionalProperties : false
+
         }
       ],
       maxProperties : 5 //profile has 2
@@ -48,3 +48,4 @@ const student = {
   additionalProperties : false
 }
 
+module.exports = schema

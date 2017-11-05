@@ -1,9 +1,18 @@
 import React from 'react'
 import { Container, Segment, Header, List, Label} from 'semantic-ui-react'
 
+const listHelper = (list) => {
+    return list.map((subject,index) => {
+        return (
+            <List.Item key={`sub-${index}`}><Label color="yellow">{subject}</Label></List.Item>
+        )
+    })
+}
+
 
 const ProfileData = ({ student, color }) => {
-    const { persona, courseSelection, eduHistory } = student
+    const { persona, courseSelection, eduHistory : {school, state, cert, attended} } = student
+    const { gender, birthdate, nationality, contact : {email, phone, address}} = persona
     return (
         <Container fluid>
             <Segment.Group>
@@ -13,46 +22,70 @@ const ProfileData = ({ student, color }) => {
                 <Segment.Group horizontal>
                     <Segment compact>
                         <Header as="h6" sub>Name</Header>
-                        Edna Salma Bushnell
+                        {`${persona.name.firstName} ${persona.name.middleName || ''} ${persona.name.lastName}`}
                     </Segment>
                     <Segment compact>
                         <Header as="h6" sub>Gender</Header>
-                        Female
+                        {gender}
                     </Segment>
                     <Segment compact>
                         <Header sub>DOB</Header>
-                        1992-06-23
+                        {birthdate}
                     </Segment>
                     <Segment compact>
                         <Header sub>Nationality</Header>
-                        Belgian
+                        {nationality}
                     </Segment>
                 </Segment.Group>
                 <Segment.Group horizontal>
-                    <Segment>Email : edna15@outlook.com</Segment>
-                    <Segment>08123456789</Segment>
-                    <Segment>5 Hackeny Road, Hadnak, Sidpa</Segment>
+                    <Segment compact>
+                        <Header as="h6" sub>Email</Header>
+                        {email}
+                        </Segment>
+                    <Segment compact>
+                        <Header as="h6" sub>Phone</Header>
+                        {phone}
+                    </Segment>
+                    <Segment compact>
+                        <Header as="h6" sub>Address</Header>
+                        {`${address.addr1}, ${address.addr2 || ''} ${address.city}, ${address.state}`}
+                    </Segment>
                 </Segment.Group>
                 <Segment >
                     <Header as="h3">Educational History</Header>
                 </Segment>
                 <Segment.Group horizontal>
-                    <Segment>School : Fair High College, Edo</Segment>
-                    <Segment>Certificate : WASCE</Segment>
-                    <Segment>Attended : from 2011-02 to 2017-05</Segment>
+                    <Segment compact>
+                        <Header as="h6" sub>School</Header>
+                        {`${school}, ${state}`}
+                    </Segment>
+                    <Segment>
+                        <Header as="h6" sub>Certificate</Header>
+                        {cert}
+                    </Segment>
+                    <Segment compact>
+                        <Header as="h6" sub>Attended</Header>
+                        {`From :${attended.from || ''}`}
+                        {'  '}
+                        {`To :${attended.to}`}
+                    </Segment>
                 </Segment.Group>
                 <Segment >
                     <Header as="h3">Course</Header>
                 </Segment>
                 <Segment.Group horizontal>
-                    <Segment>Degree : Architecture</Segment>
-                    <Segment>Course : UFP</Segment>
-                    <Segment>
-                        Subjects :
+                    <Segment compact>
+                        <Header as="h6" sub>Degree</Header>
+                        {courseSelection.degree}
+                    </Segment>
+                    <Segment compact>
+                        <Header as="h6" sub>Course</Header>
+                        {courseSelection.course}
+                    </Segment>
+                    <Segment compact>
+                        <Header as="h6" sub>Subjects</Header>
                         <List horizontal>
-                            <List.Item><Label color="green">Geology</Label></List.Item>
-                            <List.Item><Label color="green">Physics</Label></List.Item>
-                            <List.Item><Label color="green">Chemistry</Label></List.Item>
+                            {listHelper(courseSelection.subjects)}
                         </List>
                     </Segment>
                 </Segment.Group>

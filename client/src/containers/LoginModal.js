@@ -9,8 +9,8 @@ import { cancelLogin, submitLoginData } from '../actions'
 
 const LoginModal = (props) => {
     const { handleSubmit, submit, cancelLogin, submitLoginData,
-            loginErrMsg, error, submitting, pristine } = props
-    console.log(error, submitting, pristine)
+            loginErrMsg, error, submitting } = props
+
     return (
         <Modal basic open  closeIcon size="tiny" 
         onClose={cancelLogin} closeOnDimmerClick={false}
@@ -45,7 +45,7 @@ const LoginModal = (props) => {
                     <Icon name='checkmark' /> Log In
                 </Button>
             </Modal.Actions>
-            <Header inverted color="green" as="h6">Tip: Use Admin/admin to log in</Header>
+            <Header inverted color="green" as="h5">Tip: Use a 6-character username and admin as passowrd</Header>
         </Modal>
     )
 }

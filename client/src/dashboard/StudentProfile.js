@@ -1,17 +1,15 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
-import { Grid, Segment, Menu, Icon} from 'semantic-ui-react'
+import { Grid, Menu, Icon} from 'semantic-ui-react'
 import { getSingleStudent, deleteStudent, editStudent,
     cancelModal, openModal } from '../actions'
 import ProfileCard from './ProfileCard'
 import ProfileData from './ProfileData'
 import DeleteModal from './DeleteModal'
+import Loader from './Loader'
 
 
 class StudentProfile extends Component {
-    //state = {}
-
-    //handleContextRef = contextRef => this.setState({ contextRef })
     componentDidMount(){
         const { id } = this.props.match.params
         this.props.getSingleStudent(id)
@@ -35,30 +33,26 @@ class StudentProfile extends Component {
 
 
     render(){
-        //const { contextRef } = this.state
-        const { deleteModal } = this.props
-        const { student : { courseSelection, persona : {contact, name, gender }}} = this.props
-        return (
-        <Grid container centered doubling stackable columns={2}>
-            <Grid.Column>
-                <ProfileCard
-                    location={contact.address.state}
-                    color="brown"
-                    gender={gender}
-                    email={contact.email}
-                    degree={courseSelection.degree}
-                    course={courseSelection.course}
-                    name={name}
-                />
-                <Menu icon vertical color="orange" inverted>
-                    <Menu.Item name='edit' onClick={this.onEdit}>
-                        <Icon name='write' />
-                    </Menu.Item>
+        const { deleteModal, isFetching, student } = this.props
+        const fetched = !isFetching && Object.keys(student).length !== 0
 
-                    <Menu.Item name='delete' onClick={this.onDelete}>
-                        <Icon name='video camera' />
-                    </Menu.Item>
-                </Menu>
+        return (
+        <Grid container centered doubling stackable columns={3}>
+            <Grid.Column width={5}>
+                {fetched && (
+                <div>
+                <ProfileCard
+                    location={student.persona.contact.address.state}
+                    color="brown"
+                    gender={student.persona.gender}
+                    email={student.persona.contact.email}
+                    degree={student.courseSelection.degree}
+                    course={student.courseSelection.course}
+                    name={student.persona.name}
+                />
+                </div>
+                )}
+                <Loader active={isFetching}/>
 
                 <DeleteModal
                 open={deleteModal}
@@ -66,10 +60,24 @@ class StudentProfile extends Component {
                 onConfirm={this.onDeleteModal}
                 />
 
+
             </Grid.Column>
 
-            <Grid.Column >
-                <ProfileData color="brown" student={this.props.student} />
+            <Grid.Column width={2} verticalAlign="middle">
+                { fetched && (<Menu icon compact color="brown" inverted>
+                    <Menu.Item name='edit' onClick={this.onEdit}>
+                        <Icon color="yellow" name='edit' />
+                    </Menu.Item>
+
+                    <Menu.Item name='delete' onClick={this.onDelete}>
+                        <Icon color="yellow" name='trash outline' />
+                    </Menu.Item>
+                </Menu>
+                )}
+            </Grid.Column>
+
+            <Grid.Column width={9}>
+                { fetched && (<ProfileData color="brown" student={student} />) }
             </Grid.Column>
         </Grid>
         )
@@ -77,7 +85,7 @@ class StudentProfile extends Component {
 }
 
 const mapStateToProps = ({ students : { students, isFetching, deleteModal } }, ownProps) => {
-    return {student : students[ownProps.match.params.id], isFetching, deleteModal}
+    return {student : students[ownProps.match.params.id], isFetching, deleteModal }
 }
 
 export default connect(

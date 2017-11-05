@@ -1,6 +1,6 @@
 import React, {Component} from "react";
-import {Link, NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { Sidebar, Segment, Responsive, Accordion, Item,
     Menu, Icon, Header } from 'semantic-ui-react'
 import { selectMenuAction } from '../actions'

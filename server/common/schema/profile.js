@@ -35,4 +35,4 @@ const profileSchema = {
     required : ['name' , 'contact'],
 }
 
-export default profileSchema
+module.exports = profileSchema

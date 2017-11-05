@@ -23,13 +23,13 @@ import registerServiceWorker from './registerServiceWorker';
 const initialStore = {
     auth : {
         isAuth : auth.isUserAuthenticated('accessToken'),
-        currentAdmin : {} }
+        currentAdmin : auth.decodeToken('accessToken') || {} }
 }
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const history = createHistory({ basename: process.env.PUBLIC_URL})
 const reduxSaga = createReduxSaga();
-const middlewares = [routerMiddleware(history) , reduxSaga]
+const middlewares = [reduxSaga, routerMiddleware(history)]
 const store = createStore(reducers, initialStore, composeEnhancers(applyMiddleware(...middlewares)))
 
 reduxSaga.run(rootSaga)

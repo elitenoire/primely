@@ -6,10 +6,11 @@ import invalidRouteSaga from './invalid404'
 
 //WATCHER SAGA - listen for dispatched action, call worker to handle action
 export default function* manageStudentView(){
+    console.log('Will watch student view')
     const { id } = yield take(GET_STUDENT_SINGLE)
-    const { response, error } = yield call(api.getSingleStudent, id)
+    console.log('Id is ', id)
+    const { response, error } = yield call(api.getOneStudent, id)
     if(response){
-        // Need to replace, as api sends an obj { student , msg }
         const { student, msg } = response.data
         yield put({ type : GET_STUDENT_SINGLE_PASS, student , msg })
     }

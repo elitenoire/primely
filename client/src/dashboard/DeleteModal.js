@@ -4,7 +4,7 @@ import {Confirm, Segment, Icon, Button, Header} from 'semantic-ui-react'
 const DeleteModal = ({open, onCancel, onConfirm}) => {
     return (
         <Confirm
-        open={this.state.open}
+        open={open}
         cancelButton={(<Button color="yellow">Cancel</Button>)}
         confirmButton={(<Button style={{backgroundColor : 'red'}}>Delete</Button>)}
         header={(

@@ -31,7 +31,17 @@ const feedParser = (students) => {
     }, [])
 }
 
-export { studentsParser, filterCourse, feedParser }
+// Validate Form
+const validate = fields => values => {
+    return fields.reduce((errors, field) => {
+        if (!values[field]) {
+            errors[field] = 'Required'
+        }
+        return errors
+    }, {})
+}
+
+export { studentsParser, filterCourse, feedParser, validate }
 
 //test -> filterCourse
 // const students = {

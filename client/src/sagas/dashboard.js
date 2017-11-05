@@ -65,7 +65,7 @@ export default function* manageDashboard(pathname){
 
 function* watchLogoutSaga(){
     console.log('will watch logout')
-    const task = yield takeLatest(SELECT_LOGOUT, dashboardLogout)
+    yield takeLatest(SELECT_LOGOUT, dashboardLogout)
     //yield take(LOCATION_CHANGE)
     //yield cancel(task)
 }

@@ -1,12 +1,12 @@
 const express = require('express');
 const Student = require('../models/student')
-//const validate = require('./validate') //refactor later since move students to route/controller
+const validate = require('../middlewares/validate')
 const studentRouter = express.Router();
 
 
 
 // Register a new student
-studentRouter.post('/api/students',  async (req, res) => {// validate first
+studentRouter.post('/api/students', validate, async (req, res) => {// validate first
   //const admin = { name : req.decoded.username, mode : 'created'}
   const admin = { name : 'Admin', mode : 'created'}
   const data = {...req.body, admin : [admin]}
@@ -39,9 +39,9 @@ studentRouter.get('/api/students/:id', async (req, res) => {
   //const admin = { name : req.decoded.username, mode : 'viewed'}
   const admin = { name : 'Admin', mode : 'viewed'}
   try {
-    let student = await Student.findById(id)
-    student.admin.unshift(admin)
-    const viewedStudent = await student.save()
+    let viewedStudent = await Student.findById(id)
+    //student.admin.unshift(admin)
+    //const viewedStudent = await student.save()
     res.status(200).json({ student : viewedStudent, msg : 'Viewing student info' })
   }
   catch(err) {
@@ -51,7 +51,7 @@ studentRouter.get('/api/students/:id', async (req, res) => {
 
 
 // Update a student's profile
-studentRouter.put('/api/students/:id',  async (req, res) => {//validate first
+studentRouter.put('/api/students/:id', validate,  async (req, res) => {//validate first
   const id = req.params.id;
   //validate req
   //const admin = { name : req.decoded.username, mode : 'edited'}

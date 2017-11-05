@@ -19,7 +19,8 @@ export default function* routeChanger(){
 
 function* changeRoute(path, { type, method, id }){
     //const action = type === 'ADMIN_LOGOUT|LOGIN_SUCCESS' ? 'replace' : 'push'
-    const action = method || 'push'
+    console.log('Switching routes from saga ..')
+    const action =  method || 'push'
     yield put(routerActions[action](`${path}${id || ''}`))
 }
 
@@ -33,7 +34,7 @@ const actionRouteMap = {
     [REDIRECT_DASHBOARD] : DASHBOARD_PATH,
     [DELETE_STUDENT_PASS] : DASHBOARD_STUDENTS_PATH,
     [EDIT_STUDENT] : DASHBOARD_STUDENT_EDIT_PATH,
-    [CREATE_SUBMIT_STUDENT_PASS] : DASHBOARD_STUDENT_ONE_PATH, // might change
+    [CREATE_SUBMIT_STUDENT_PASS] : DASHBOARD_PATH, // might change
     [UPDATE_SUBMIT_STUDENT_PASS] : DASHBOARD_STUDENT_ONE_PATH // might change
 }
 

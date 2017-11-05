@@ -4,8 +4,6 @@ import { Link, NavLink } from 'react-router-dom'
 import { Label, Table, Image, Segment, Container, Icon, Header} from 'semantic-ui-react'
 import AvatarName from './AvatarName'
 import { getStudents } from '../actions'
-//For test purpose: Please refactor out when connected to redux store
-import { list } from './seed'
 
 class StudentList extends Component {
     constructor(){
@@ -15,9 +13,7 @@ class StudentList extends Component {
     }
 
     componentDidMount(){
-        console.log('about to dispatch action')
         this.props.getStudents()
-        console.log('get students in studentlist dispatched')
     }
 
     renderHeader = () => {
