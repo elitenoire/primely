@@ -45,7 +45,7 @@ const EduHistory = ({ handleSubmit, previousStep, OnCancel }) => {
 
 const fields = ['school', 'state', 'cert' , 'from', 'to']
 
-export default reduxForm (
+export default connect()(reduxForm (
         {
             form: "student",
             destroyOnUnmount: false,
@@ -57,6 +57,7 @@ export default reduxForm (
     )(
         EduHistory
     )
+)
 
 
 
