@@ -8,9 +8,6 @@ import { ACCESS_TOKEN } from '../constants'
 import { auth } from '../utils'
 
 const Router = (props) => {
-    console.log('props is ', props)
-    console.log('location in router is ', props.location)
-    console.log('In main route, will redirect if not auth')
     return (
         <Switch>
             <Route path={HOME_PATH} exact component={Home} />
@@ -42,7 +39,5 @@ const AuthenticatedRoute = ({ component: Component, redirect, ...rest }) => (
     )}}/>
     )
 
-//<Route path={EDIT_SNAP_PATH + ':id'} render={props => <SnapsMaker {...props} mode="UPDATE" />} />
-//<Route path={VIEW_SNAP_PATH + ':id'} component={SnapSingleView} />
 
 export default Router;

@@ -28,10 +28,12 @@ class Layout extends Component {
                             <Header as="h2" color="yellow" inverted>Primely</Header>
                         </Segment>
                     </Menu.Item>
+
                     <Menu.Item name='dashboard' as={Link} to={`${match.path}`}>
                         <Icon name='home' color="yellow"/>
                         Dashboard
                     </Menu.Item>
+
                     <Menu.Item name='students'>
                         <Icon name='student' color="yellow"/>
                         <Accordion inverted fluid>
@@ -50,6 +52,7 @@ class Layout extends Component {
                             </Accordion.Content>
                         </Accordion>
                     </Menu.Item>
+
                     <Menu.Item name='logout' onClick={this.onLogOut}>
                         <Icon name='sign out' color="yellow"/>
                         LogOut

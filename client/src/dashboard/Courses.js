@@ -34,9 +34,11 @@ console.log(subjects)
                     )}
                 </FormSection>
             </Segment>
+
             <Button onClick={previousStep} type='button' color="brown" floated="left">Back</Button>
             <Button onClick={onCancel} type='button' color="red">Cancel</Button>
             <Button type='submit' color="yellow">Submit</Button>
+
         </Form>
     )
 }

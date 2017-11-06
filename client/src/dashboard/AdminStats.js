@@ -42,21 +42,3 @@ const generateStats = (fields, count) => {
     })
 }
 export default AdminStats
-
-
-
-// <Segment clearing attached color="yellow" tertiary inverted style={{ border: 'none' }}>
-// <Statistic color="red" floated="right" label="Students" value="5" />
-// <Label color="violet" size="large" horizontal>A-Levels</Label>
-// <Header as="h5" disabled><Icon color='violet' name="info" circular /></Header>             
-// </Segment>
-// <Segment clearing attached color="yellow" tertiary inverted style={{ border: 'none' }}>
-// <Statistic color="red" floated="right" label="Students" value="5" />
-// <Label color='green' size="large" horizontal>GCSE</Label>
-// <Header as="h5" disabled><Icon color='green' name="info" circular /></Header>
-// </Segment>
-// <Segment clearing attached color="yellow" tertiary inverted style={{ border: 'none' }}>
-// <Statistic color="red" floated="right" label="Students" value="5" />
-// <Label color='blue' size="large" horizontal>UFP</Label>
-// <Header as="h5" disabled ><Icon color='blue' name="info" circular /></Header>
-// </Segment>

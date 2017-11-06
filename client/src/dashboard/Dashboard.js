@@ -9,8 +9,6 @@ import { getStudents } from '../actions'
 
 
 class Dashboard extends Component {
-    //state = {isLoading : true}
-
     componentDidMount(){
         console.log('about to dispatch action')
         this.props.getStudents()
@@ -68,7 +66,7 @@ class Dashboard extends Component {
                     <AdminStats students={students} loading={isFetching}/>
                 </Grid.Column>
 
-                <Grid.Row divided textAlign="left" centered={false}>
+                <Grid.Row divided textAlign="left">
                     <Grid.Column >
                         <AdminFeed students={students} loading={isFetching}/>
                     </Grid.Column>
