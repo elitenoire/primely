@@ -12,7 +12,7 @@ const Root = ({ match }) => {
             <Switch>
                 <Route exact path={match.path} component={Dashboard}  />
                 <Route exact path={`${match.path}/students`} component={StudentList}  />
-                <Route path={`${match.path}/students/new`} 
+                <Route path={`${match.path}/students/new`}
                     render={props => <StudentSave {...props} mode="CREATE"/>}  />
                 <Route path={`${match.url}/students/edit/:id`}
                     render={props => <StudentSave {...props} mode="UPDATE" />}  />

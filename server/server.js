@@ -1,7 +1,7 @@
 const express = require('express')
 const bodyParser= require('body-parser');
 const studentRouter = require('./routes/students')
-const { authLogin } = require('./middlewares/auth')
+const { authLogin, authChecker } = require('./middlewares/auth')
 const { mongoURI } = require('./config/auth')
 //require mongoose
 const mongoose = require('mongoose')
@@ -25,7 +25,7 @@ app.post('/auth/login', authLogin )
 
 
 //use middlewares
-//app.use(authChecker) doesn't always work
+app.use(authChecker) //doesn't always work
 app.use(studentRouter)
 
 // tell the app to look for static files in these directories

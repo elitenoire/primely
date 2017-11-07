@@ -28,11 +28,11 @@ export default function* manageLogin(){
             const { response, error } = yield call(auth.login, data)
             if(response){
                 console.log('axios res data ', response.data)
-                isAuth = true
                 const { token } = response.data
                 yield call(auth.authenticateUser, ACCESS_TOKEN, token)
                 yield put(stopSubmit(formName, errors))
                 yield put({ type : LOGIN_ADMIN_PASS, admin : response.data, method : 'replace'})
+                isAuth = true
                 return
             }
             else {

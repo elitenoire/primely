@@ -6,7 +6,7 @@ import { api } from '../utils'
 
 //WATCHER SAGA - listen for dispatched action, call worker to handle action
 export default function* manageStudentView({ id }){
-    const { response, error } = yield call(api.getOneStudent, id)
+    const { response, error } = yield call(api().getOneStudent, id)
     if(response){
         const { student, msg } = response.data
         yield put({ type : GET_STUDENT_SINGLE_PASS, student , msg })

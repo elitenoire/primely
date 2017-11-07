@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { Label, Table, Segment, Container} from 'semantic-ui-react'
 import AvatarName from './AvatarName'
+import Loader from './Loader'
 import { getStudents } from '../actions'
 
 class StudentList extends Component {
@@ -32,6 +33,15 @@ class StudentList extends Component {
     }
 
     renderRow = (students) => {
+        if(Object.keys(students).length === 0){
+            return (
+                    <Table.Row textAlign="center">
+                        <Table.HeaderCell colSpan={this.headers.length}>
+                            No Student record found
+                        </Table.HeaderCell>
+                    </Table.Row>
+                )
+        }
         return Object.keys(students).reduce((list,id,index) => {
             const data = [index+1,
                 (<AvatarName
@@ -57,7 +67,7 @@ class StudentList extends Component {
     }
 
     render(){
-        const { students } = this.props
+        const { students, isFetching } = this.props
         return (
             <Container>
                 <Segment >
@@ -65,7 +75,7 @@ class StudentList extends Component {
                     padded stackable selectable>
                         <Table.Header>
                             <Table.Row>
-                            {this.renderHeader()}
+                                {this.renderHeader()}
                             </Table.Row>
                         </Table.Header>
 
@@ -74,6 +84,7 @@ class StudentList extends Component {
                         </Table.Body>
                     </Table>
                 </Segment>
+                <Loader active={isFetching} />
             </Container>
         )
     }

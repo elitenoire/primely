@@ -22,6 +22,9 @@ const AdminFeed = ({loading, students}) => {
 }
 
 const generateFeeds = (feeds) => {
+    if(feeds.length === 0){
+        return (<Feed.Event content={"No activity found"} />)
+    }
     return feeds.map((feed, index) => {
         return (
             <Feed.Event key={`feed-${index}`}

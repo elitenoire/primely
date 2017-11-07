@@ -3,23 +3,25 @@ import { auth } from './auth'
 import { ACCESS_TOKEN } from '../constants'
 
 
-//const client = axios.create({baseURL: '/api' });
 
-const api = {}
-// Configure axios header with token if any
-api.setAuthConfig = (token) => {
-  const config = {baseURL: '/api' }
-  if(token) config.headers = {common :{ Authorization : `Bearer ${token}`}}
-  return config
+const api =  (key = ACCESS_TOKEN ) => {
+  const token = auth.getTokenFromStorage(key)
+  axios.defaults.baseURL = '/api'
+  if(token){
+    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
+  }
+  else {
+    delete axios.defaults.headers.common['Authorization']
+  }
+  return { getStudents, getOneStudent, deleteStudent, saveStudent}
 }
 
-// Create axios client with token in header
-const client = axios.create(api.setAuthConfig(auth.getTokenFromStorage(ACCESS_TOKEN)));
+
 
 // Fetch a list of students from db
-api.getStudents = async () => {
+const getStudents = async () => {
   try{
-      const response = await client.get('/students')
+      const response = await axios.get('/students')
       return { response }
   }
   catch(err){
@@ -31,9 +33,9 @@ api.getStudents = async () => {
 }
 
 // Fetch only one student by id
-api.getOneStudent = async (id) => {
+const getOneStudent = async (id) => {
   try {
-      const response = await client.get(`/students/${id}`)
+      const response = await axios.get(`/students/${id}`)
       return { response }
   }
   catch(err){
@@ -45,9 +47,9 @@ api.getOneStudent = async (id) => {
 }
 
 // Send request to delete student record in db
-api.deleteStudent = async (id) => {
+const deleteStudent = async (id) => {
   try{
-      const response = await client.delete(`/students/${id}`)
+      const response = await axios.delete(`/students/${id}`)
       return { response }
   }
   catch(err){
@@ -59,9 +61,9 @@ api.deleteStudent = async (id) => {
 }
 
 // Send request to create new / update old student record
-api.saveStudent = async (student, method, id = '') => {
+const saveStudent = async (student, method, id = '') => {
   try{// method : post || put -> create new || update old
-      const response = await client[method](`/students/${id}`, student)
+      const response = await axios[method](`/students/${id}`, student)
       return { response }
   }
   catch(err){
@@ -72,8 +74,6 @@ api.saveStudent = async (student, method, id = '') => {
   return {error : {success : 'false' , _error : 'Something went wrong, please refresh'}}
   }
 }
-
-
 
 export { api }
 

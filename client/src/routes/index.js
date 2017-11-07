@@ -30,7 +30,7 @@ const AuthenticatedRoute = ({ component: Component, redirect, ...rest }) => (
             }}/>
         ) :  Component.name === 'Home' ? (
                 <Component {...props}>
-                    <LoginModal/>
+                    <LoginModal location={props.location}/>
                 </Component>
                 )
             : (

@@ -13,7 +13,7 @@ export default function* studentSaver({type, student, formName, id, mode}){
     let errors = {}
     //const submit = yield call(api.saveStudent, student, method, id)
     const { submit, cancel } = yield race({
-        submit : call(api.saveStudent, student, method, id),
+        submit : call(api().saveStudent, student, method, id),
         cancel : take(CANCEL_STUDENT)
     })
     if(cancel){

@@ -5,7 +5,7 @@ import { showModal } from '../actions'
 import { api } from '../utils'
 
 function* deleteSingleStudent(id){
-    const { error } = yield call(api.deleteStudent, id) //delete from backend api
+    const { error } = yield call(api().deleteStudent, id) //delete from backend api
     if(error){
         yield put({type : DELETE_STUDENT_FAIL, error})
     }

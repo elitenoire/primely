@@ -10,6 +10,7 @@ import Loader from './Loader'
 
 
 class StudentProfile extends Component {
+
     componentDidMount(){
         const { id } = this.props.match.params
         this.props.getSingleStudent(id)
@@ -33,8 +34,10 @@ class StudentProfile extends Component {
 
 
     render(){
+        console.log('rendering...')
+        console.log('isfetching is ', this.props.isFetching)
         const { deleteModal, isFetching, student } = this.props
-        const fetched = !isFetching && Object.keys(student).length !== 0
+        const fetched = !isFetching
 
         return (
         <Grid container centered doubling stackable columns={3}>

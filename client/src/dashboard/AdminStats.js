@@ -17,7 +17,7 @@ const AdminStats = ({loading, students}) => {
                 <Segment attached color="yellow" textAlign="center" tertiary inverted style={{ border: 'none' }}>
                     Fetching students stats...
                 </Segment>)}
-            {!loading && Object.keys(students).length !== 0 && generateStats(fields, filterCourse(students))}
+            {!loading && generateStats(fields, filterCourse(students))}
             <Segment attached="bottom" color="brown" tertiary inverted style={{ border: 'none' }}></Segment>
             </Segment>
         </Container>
