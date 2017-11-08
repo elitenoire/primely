@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
-import { Label, Table, Segment, Container} from 'semantic-ui-react'
+import { Label, Table, Segment, Container, Button } from 'semantic-ui-react'
 import AvatarName from './AvatarName'
+import DeleteModal from './DeleteModal'
 import Loader from './Loader'
-import { getStudents } from '../actions'
+import { getStudents, deleteStudent, cancelModal, openModal } from '../actions'
 
 class StudentList extends Component {
     constructor(){
@@ -17,6 +18,16 @@ class StudentList extends Component {
         this.props.getStudents()
     }
 
+    onDelete = (id) => {
+        this.props.openModal(id)
+    }
+    onDeleteModal = () => {
+        this.props.deleteStudent()
+    }
+    onCancel = () => {
+        this.props.cancelModal()
+    }
+
     renderHeader = () => {
         return this.headers.map(header => (
             <Table.HeaderCell key={header}>{header}</Table.HeaderCell>
@@ -25,9 +36,17 @@ class StudentList extends Component {
 
     renderCell = (data, id) => {
         const { match } = this.props
-        return data.map((field, index) => (
+        return data.map((field, index, array) => (
             <Table.Cell key={`cell-${index}`}>
                 <NavLink activeClassName="active" to={`${match.path}/${id}`}>{field}</NavLink>
+                {array.length-1 === index && (
+                    <Button basic circular compact
+                    color="red"
+                    size="mini"
+                    floated="right"
+                    icon="delete"
+                    onClick={()=>this.onDelete(id)} />
+                )}
             </Table.Cell>
         ))
     }
@@ -67,11 +86,11 @@ class StudentList extends Component {
     }
 
     render(){
-        const { students, isFetching } = this.props
+        const { students, isFetching, deleteModal } = this.props
         return (
             <Container>
                 <Segment >
-                    <Table basic='very' columns={this.headers.length}
+                    <Table basic='very' striped definition verticalAlign="middle"
                     padded stackable selectable>
                         <Table.Header>
                             <Table.Row>
@@ -84,15 +103,23 @@ class StudentList extends Component {
                         </Table.Body>
                     </Table>
                 </Segment>
+
                 <Loader active={isFetching} />
+
+                <DeleteModal
+                open={deleteModal}
+                onCancel={this.onCancel}
+                onConfirm={this.onDeleteModal}
+                />
+
             </Container>
         )
     }
 }
 
 export default connect(
-    ({students : { students, isFetching}}) => ({ students, isFetching}),
-    { getStudents }
+    ({students : { students, isFetching, deleteModal }}) => ({ students, isFetching, deleteModal }),
+    { getStudents, deleteStudent, cancelModal, openModal }
 )(
     StudentList
 )

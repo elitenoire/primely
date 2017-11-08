@@ -69,9 +69,9 @@ const ProfileData = ({ student, color }) => {
                     </Segment>
                     <Segment >
                         <Header as="h6" sub>Attended</Header>
-                        {`From :${attended.from || ''}`}
-                        {'  '}
-                        {`To :${attended.to}`}
+                        {`From: ${attended.from || ''}`}
+                        {'   '}
+                        {`To: ${attended.to}`}
                     </Segment>
                 </Segment.Group>
                 <Segment >

@@ -94,8 +94,9 @@ export const cancelModal = () => {
     }
 }
 
-export const openModal = () => {
+export const openModal = (id) => {
     return {
-        type : DELETE_STUDENT_MODAL
+        type : DELETE_STUDENT_MODAL,
+        id
     }
 }

@@ -15,7 +15,7 @@ function* deleteSingleStudent(id){
     }
 }
 
-export default function* deleteStudentCheck(){
+export default function* deleteStudentCheck({ id }){
     yield put(showModal(true))
     //wait for UI to cancel or approve delete from modal
     console.log('Delete modal is open!')
@@ -27,7 +27,7 @@ export default function* deleteStudentCheck(){
     )
     //Make delete request to api
     if(deleteOk){
-        yield fork(deleteSingleStudent, deleteOk.id)
+        yield fork(deleteSingleStudent, deleteOk.id || id)
     }
     //close modal
     yield put(showModal(false))

@@ -67,13 +67,13 @@ class StudentProfile extends Component {
             </Grid.Column>
 
             <Grid.Column width={2} verticalAlign="middle">
-                { fetched && (<Menu icon compact color="brown" inverted>
+                { fetched && (<Menu icon compact color="yellow" inverted>
                     <Menu.Item name='edit' onClick={this.onEdit}>
-                        <Icon color="yellow" name='edit' />
+                        <Icon color="brown" name='edit' />
                     </Menu.Item>
 
                     <Menu.Item name='delete' onClick={this.onDelete}>
-                        <Icon color="yellow" name='trash outline' />
+                        <Icon color="brown" name='trash outline' />
                     </Menu.Item>
                 </Menu>
                 )}
