@@ -1,7 +1,7 @@
 const express = require('express')
 const bodyParser= require('body-parser');
 const studentRouter = require('./routes/students')
-const { authLogin, authChecker } = require('./middlewares/auth')
+const { authLogin } = require('./middlewares/auth')
 const { mongoURI } = require('./config/auth')
 //require mongoose
 const mongoose = require('mongoose')
@@ -21,11 +21,10 @@ const app = express()
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json() );
 
+// Handle login route
 app.post('/auth/login', authLogin )
 
-
-//use middlewares
-app.use(authChecker) //doesn't always work
+// Handle students route
 app.use(studentRouter)
 
 // tell the app to look for static files in these directories
@@ -37,7 +36,7 @@ if (process.env.NODE_ENV === 'production') {
     app.get('*' , (req, res) => {
         res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
     })
-  }
+}
 
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`))

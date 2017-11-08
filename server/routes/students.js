@@ -1,9 +1,11 @@
 const express = require('express');
 const Student = require('../models/student')
 const validate = require('../middlewares/validate')
+const { authChecker } = require('../middlewares/auth')
 const studentRouter = express.Router();
 
-
+//Only authenticated users can make request to route
+studentRouter.use(authChecker)
 
 // Register a new student
 studentRouter.post('/api/students', validate, async (req, res) => {// validate first
