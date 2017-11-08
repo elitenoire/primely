@@ -1,11 +1,11 @@
 import React from 'react';
-import { connect } from 'react-redux'
+// import { connect } from 'react-redux'
 import {Field, FormSection, reduxForm } from 'redux-form'
 import { Form, Button, Segment } from 'semantic-ui-react'
 import { InputField } from 'react-semantic-redux-form'
 import { validate } from '../utils'
 
-const EduHistory = ({ handleSubmit, previousStep, OnCancel }) => {
+const EduHistory = ({ handleSubmit, previousStep, onCancel }) => {
     return (
         <Form onSubmit={handleSubmit}>
             <Segment color="green" style={{minHeight : 300}}>
@@ -37,27 +37,27 @@ const EduHistory = ({ handleSubmit, previousStep, OnCancel }) => {
                 </FormSection>
             </Segment>
             <Button onClick={previousStep} type="button" color="brown" floated="left">Back</Button>
-            <Button onClick={OnCancel} type="button" color="red">Cancel</Button>
+            <Button onClick={onCancel} type="button" color="red">Cancel</Button>
             <Button type="submit" color="yellow">Next</Button>
         </Form>
     )
 }
 
-const fields = ['school', 'state', 'cert' , 'from', 'to']
+const fields = ['school', 'state', 'cert' , 'attended.from', 'attended.to']
 
-export default connect()(reduxForm (
+export default reduxForm (
         {
             form: "student",
             destroyOnUnmount: false,
             forceUnregisterOnUnmount: true,
-            //keepDirtyOnReinitialize: true,
-            //enableReinitialize: true,
+            keepDirtyOnReinitialize: true,
+            enableReinitialize: true,
             validate : validate(fields)
         }
     )(
         EduHistory
     )
-)
+
 
 
 

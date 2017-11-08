@@ -8,7 +8,7 @@ import { alevels, gcse, ufp, common, degree, courses } from '../utils/choices'
 
 // NOTE : In schema required are degree, course
 
-const Courses = ({ sid, course, subjects, onCancel, handleSubmit, previousStep , onSubmit}) => {
+const Courses = ({ course, subjects, onCancel, handleSubmit, previousStep , onSubmit}) => {
 console.log(course)
 console.log(subjects)
     return (
@@ -93,7 +93,6 @@ export default connect(
         course: selector(state, "courseSelection.course"),
         subjects: selector(state, "courseSelection.GCSESub",
                     "courseSelection.UFPSub", "courseSelection.ALevelsSub"),
-        initialValues : state.students[ownProps.sid]
     }),
     null
 )(
@@ -102,7 +101,7 @@ export default connect(
             form: "student",
             destroyOnUnmount: false,
             forceUnregisterOnUnmount: true,
-            //keepDirtyOnReinitialize: true,
+            keepDirtyOnReinitialize: true,
             enableReinitialize: true
         }
     )(
