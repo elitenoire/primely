@@ -38,7 +38,7 @@ class StudentList extends Component {
         const { match } = this.props
         return data.map((field, index, array) => (
             <Table.Cell key={`cell-${index}`}>
-                <NavLink activeClassName="active" to={`${match.path}/${id}`}>{field}</NavLink>
+                <NavLink style={{color : '#000'}} to={`${match.path}/${id}`}>{field}</NavLink>
                 {array.length-1 === index && (
                     <Button basic circular compact
                     color="red"

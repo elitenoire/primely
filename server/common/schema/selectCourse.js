@@ -7,7 +7,7 @@ const courseSelectSchema = {
         type : ['array', 'string'],
         uniqueItems : true
     },
-    maxProperties : 3,
+    maxProperties : 5,
     required : ['course', 'degree'],
     definitions : {
         common : { enum : common },

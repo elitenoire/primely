@@ -15,8 +15,7 @@ class Layout extends Component {
 
     render() {
     const { visible, active } = this.state
-    const { match, children } = this.props
-    console.log('In layout, match path is ', match.path)
+    const { match, children, username } = this.props
     return (
         <div>
             <Sidebar.Pushable as={Segment}>
@@ -76,7 +75,7 @@ class Layout extends Component {
                                 />
                                 <Responsive
                                 as={Header}
-                                content="Online 3mins ago"
+                                content={`Admin ${username}`}
                                 color="yellow"
                                 icon={(<Icon name="user" color="yellow" circular link />)}
                                 minWidth={Responsive.onlyTablet.minWidth}
@@ -96,5 +95,5 @@ class Layout extends Component {
     }
 }
 
-export default connect(null , { selectMenuAction } )(Layout)
+export default connect(({auth :{ currentAdmin }})=>({username : currentAdmin.username}), { selectMenuAction } )(Layout)
 

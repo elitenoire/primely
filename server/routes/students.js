@@ -9,8 +9,8 @@ studentRouter.use(authChecker)
 
 // Register a new student
 studentRouter.post('/api/students', validate, async (req, res) => {// validate first
-  //const admin = { name : req.decoded.username, mode : 'created'}
-  const admin = { name : 'Admin', mode : 'created'}
+  const admin = { name : req.decoded.username, mode : 'created', timeStamp : Date.now()}
+  //const admin = { name : 'Admin', mode : 'created'}
   const data = {...req.body, admin : [admin]}
 
   try {
@@ -38,8 +38,8 @@ studentRouter.get('/api/students', async (req, res) => {
 //View a student's profile
 studentRouter.get('/api/students/:id', async (req, res) => {
   let id = req.params.id;
-  //const admin = { name : req.decoded.username, mode : 'viewed'}
-  const admin = { name : 'Admin', mode : 'viewed'}
+  const admin = { name : req.decoded.username, mode : 'viewed', timeStamp : Date.now()}
+  // const admin = { name : 'Admin', mode : 'viewed'}
   try {
     let viewedStudent = await Student.findById(id)
     //student.admin.unshift(admin)
@@ -56,8 +56,8 @@ studentRouter.get('/api/students/:id', async (req, res) => {
 studentRouter.put('/api/students/:id', validate,  async (req, res) => {//validate first
   const id = req.params.id;
   //validate req
-  //const admin = { name : req.decoded.username, mode : 'edited'}
-  const admin = { name : 'Admin', mode : 'edited'}
+  const admin = { name : req.decoded.username, mode : 'edited', timeStamp : Date.now()}
+  // const admin = { name : 'Admin', mode : 'edited'}
   try {
     let student = await Student.findById(id)
     student.admin.unshift(admin)
@@ -76,8 +76,8 @@ studentRouter.put('/api/students/:id', validate,  async (req, res) => {//validat
 // Delete a student's profile from the record
 studentRouter.delete('/api/students/:id', async (req, res) => {
   const id = req.params.id;
-  //const admin = {name : req.decoded.username, mode : 'deleted', timeStamp : Date.now()}
-  const admin = {name : 'Admin', mode : 'deleted', timeStamp : Date.now(), id}
+  const admin = {name : req.decoded.username, mode : 'deleted', timeStamp : Date.now()}
+  // const admin = {name : 'Admin', mode : 'deleted', timeStamp : Date.now(), id}
   try {
     await Student.findByIdAndRemove(id)
     res.status(200).json({ admin, msg : 'Deleted student info'})

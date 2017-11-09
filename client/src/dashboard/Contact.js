@@ -23,7 +23,7 @@ const Profile = () => {
             <FormSection name="contact">
                 <Form.Group widths={2}>
                     <Field name="email" id="email-1" component={InputField} required
-                    label="Email" placeholder="example.com" type="email"
+                    label="Email" placeholder="example@mail.com" type="email"
                     />
                     <Field name="phone" id="phone-1" component={InputField} required
                     label="Mobile Number" placeholder="eg 08123456789"

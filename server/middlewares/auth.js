@@ -39,6 +39,7 @@ const authLogin = (req, res) => {
             token : jwt.sign( tokenData, SECRET_KEY, { expiresIn : '6h'}), //60 * 60 * 1
             success : true,
             message : 'Welcome Admin',
+            username : req.body.username.trim(),
             currentLogTime : Date.now(),
             lastLogTime : user.lastLogTime,
             }

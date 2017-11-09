@@ -29,8 +29,8 @@ const generateFeeds = (feeds) => {
         return (
             <Feed.Event key={`feed-${index}`}
                 icon='configure'
-                date='3 mins ago'
-                summary={feed}
+                date={`${feed[1]} ago`}
+                summary={feed[0]}
             />
         )
     })
