@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom'
 import { Field, reduxForm, submit } from 'redux-form'
 import { Container, Modal, Header, Button, Icon, Form } from 'semantic-ui-react'
 import { LabelInputField } from 'react-semantic-redux-form'
@@ -75,15 +74,13 @@ const handleKeyDown = (e, cb) => {
 }
 
 
-export default withRouter(connect(
-        ({ auth : { loginErrMsg } }) => ({ loginErrMsg }) ,
-        { submit, cancelLogin }
+export default connect(
+    ({ auth : { loginErrMsg } }) => ({ loginErrMsg }) ,
+    { submit, cancelLogin }
+)(
+    reduxForm(
+        {form:formName, validate, onSubmit }
     )(
-        reduxForm(
-            {form:formName, validate, onSubmit }
-        )(
-            LoginModal
-        )
+        LoginModal
     )
 )
-
