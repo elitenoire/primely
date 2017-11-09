@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom'
+//import { withRouter } from 'react-router-dom'
 import NavBar from '../components/NavBar'
 import Landing from '../components/Landing'
 import { Container, Segment, Header, Icon, Statistic } from 'semantic-ui-react'
@@ -47,4 +47,4 @@ const Home = ({ children }) => {
     )
 }
 
-export default withRouter(Home)
+export default Home

@@ -1,7 +1,7 @@
 const express = require('express')
 const bodyParser= require('body-parser');
 const studentRouter = require('./routes/students')
-const { authLogin } = require('./middlewares/auth')
+const { authLogin, authChecker } = require('./middlewares/auth')
 const { mongoURI } = require('./config/auth')
 //require mongoose
 const mongoose = require('mongoose')
@@ -24,12 +24,19 @@ app.use(bodyParser.json() );
 // Handle login route
 app.post('/auth/login', authLogin )
 
+// tell the app to look for static files in these directories
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static('client/build'));
+}
+
+// auth middleware
+app.all('/api/*', authChecker);
 // Handle students route
 app.use(studentRouter)
 
 // tell the app to look for static files in these directories
 if (process.env.NODE_ENV === 'production') {
-    app.use(express.static('client/build'));
+    //app.use(express.static('client/build'));
 
     //serve index.html for unrecognized route -> react-router
     const path = require('path')
