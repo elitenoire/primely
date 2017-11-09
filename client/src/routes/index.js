@@ -8,6 +8,7 @@ import { ACCESS_TOKEN } from '../constants'
 import { auth } from '../utils'
 
 const Router = (props) => {
+    console.log('location in router ', props.location)
     return (
         <Switch>
             <Route path={HOME_PATH} exact component={Home} />
@@ -20,6 +21,7 @@ const Router = (props) => {
 
 const AuthenticatedRoute = ({ component: Component, redirect, ...rest }) => (
     <Route {...rest} render={ props => {
+        console.log('location obj is ', props.location)
         let isAuth = auth.isUserAuthenticated(ACCESS_TOKEN)
         if (props.location.pathname === LOGIN_PATH) isAuth = !isAuth
         return (
@@ -30,11 +32,11 @@ const AuthenticatedRoute = ({ component: Component, redirect, ...rest }) => (
             }}/>
         ) :  Component.name === 'Home' ? (
                 <Component {...props}>
-                    <LoginModal />
+                    <LoginModal location={props.location}/>
                 </Component>
                 )
             : (
-                <Component {...props}/>
+                <LoginModal {...props}/>
                 )
     )}}/>
     )

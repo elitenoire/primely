@@ -34,10 +34,8 @@ app.all('/api/*', authChecker);
 // Handle students route
 app.use(studentRouter)
 
-// tell the app to look for static files in these directories
-if (process.env.NODE_ENV === 'production') {
-    //app.use(express.static('client/build'));
 
+if (process.env.NODE_ENV === 'production') {
     //serve index.html for unrecognized route -> react-router
     const path = require('path')
     app.get('*' , (req, res) => {
