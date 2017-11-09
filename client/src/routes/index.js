@@ -28,9 +28,9 @@ const AuthenticatedRoute = ({ component: Component, redirect, ...rest }) => (
                 pathname: redirect,
                 state: { from: props.location }
             }}/>
-        ) :  Component.name === 'Home' ? (
+        ) :   props.location.pathname === LOGIN_PATH ? (
                 <Component {...props}>
-                    <LoginModal location={props.location}/>
+                    <LoginModal />
                 </Component>
                 )
             : (
