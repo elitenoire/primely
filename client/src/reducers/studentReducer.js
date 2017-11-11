@@ -18,7 +18,7 @@ export default (state = INITIAL_STATE, action) => {
         case GET_STUDENT_SINGLE_PASS :
         case CREATE_SUBMIT_STUDENT_PASS :
         case UPDATE_SUBMIT_STUDENT_PASS :
-            return { ...state, isFetching : false, notif : msg,
+            return { ...state, isFetching : false, notif : msg, error : '',
                 students : {...state.students, [student._id] : student} }
         case DELETE_STUDENT_CACHE : {
             const copy = {...state.students}
@@ -28,7 +28,7 @@ export default (state = INITIAL_STATE, action) => {
         //add fail state for create, update
         case CREATE_SUBMIT_STUDENT_FAIL :
         case UPDATE_SUBMIT_STUDENT_FAIL :
-            return { ...state, notif : `Error : Can not ${mode.toLowerCase()} student profile`}
+            return { ...state, notif : `Error : Can not ${mode.toLowerCase()} student profile`, error}
         case GET_STUDENTS_FAIL :
         case GET_STUDENT_SINGLE_FAIL :
         case DELETE_STUDENT_FAIL :

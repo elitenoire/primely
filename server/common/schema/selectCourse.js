@@ -3,17 +3,12 @@ const { degree, course, common, alevels, gcse, ufp } = require('./choices')
 const courseSelectSchema = {
     $id : 'selectCourse',
     type : 'object',
-    additionalProperties: {
-        type : ['array', 'string'],
-        uniqueItems : true
-    },
-    maxProperties : 5,
     required : ['course', 'degree'],
     definitions : {
         common : { enum : common },
-        gcse : { enum : gcse }, //use directly
-        ufp : { enum : ufp }, //use directly
-        alevels : { enum : alevels } //use directly
+        gcse : { enum : gcse },
+        ufp : { enum : ufp },
+        alevels : { enum : alevels }
     },
     properties : {
         degree : { enum : degree },
@@ -23,6 +18,8 @@ const courseSelectSchema = {
     selectCases : {
         ALevels : {
             properties : {
+                degree : { enum : degree },
+                course : { enum : course },
                 ALevelsSub : {items : {
                 anyOf : [
                 { $ref : 'selectCourse#/definitions/alevels'},
@@ -31,15 +28,23 @@ const courseSelectSchema = {
                 minItems : 3,
                 maxItems : 5
                 }
-            }
+            },
+            additionalProperties : false,
+            required : ['ALevelsSub'],
         },
         UFP : {
             properties : {
+                degree : { enum : degree },
+                course : { enum : course },
                 UFPSub : { $ref : 'selectCourse#/definitions/ufp'}
-            }
+            },
+            additionalProperties : false,
+            required : ['UFPSub'],
         },
         GCSE : {
             properties : {
+                degree : { enum : degree },
+                course : { enum : course },
                 GCSESub : {items : {
                 anyOf : [
                 { $ref : 'selectCourse#/definitions/gcse'},
@@ -47,7 +52,9 @@ const courseSelectSchema = {
                 ]},
                 minItems : 7,
                 maxItems : 9}
-            }
+            },
+            additionalProperties : false,
+            required : ['GCSESub'],
         }
     }
 }

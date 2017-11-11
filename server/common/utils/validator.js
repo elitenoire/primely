@@ -1,4 +1,6 @@
 const Ajv = require('ajv/dist/ajv.min');
+const objectPath = require('object-path');
+const objectAssign = require('object-assign');
 
 
 const ajv = new Ajv({
@@ -7,8 +9,6 @@ const ajv = new Ajv({
     removeAdditional : true,
     allErrors : true,
     jsonPointers: true
-    //format : 'full',
-    // coerceTypes : true
 });
 
 ajv.addFormat('phone', /^((\+234)|0)([7-9]{1})([0|1]{1})([\d]{1})([\d]{7})$/)
@@ -19,43 +19,46 @@ require('ajv-keywords/keywords/if')(ajv, 'if')
 require('ajv-keywords/keywords/select')(ajv, 'select')
 
 
-function validateSchema(schema, target) {
-//   let ajv = Ajv();
-    let validator = ajv.compile(schema);
-    let result = validator(target);
-    return [result, normaliser(validator.errors)];
-}
+//****************************************************************** */
+//*********Code sourced from and credited to @gitjs on github */
+// https://github.com/gitjs/redux-form-with-ajv
 
-// function normaliser(errors) {
-//     var fields = errors.reduce((acc, e) => {
-//             acc[e.dataPath.slice(1)] = [e.message.toUpperCase()[0] + e.message.slice(1)];
-//             return acc;
-//         },
-//         {}
-//     );
+const errorMessage = error =>  error.message;
 
-//     return { fields };
-// }
+const validate = (schema, options = {}) => {
+    options = objectAssign({ ajv, errorMessage }, options);
 
-function normaliser(errors) {
-    if(errors){
-        errors.forEach( obj => {
-            // Massage ajv errors to the { 'fieldName': 'errorMessage' } format expected by redux-form
-            if (obj.keyword === 'required') {
-              errors[obj.params.missingProperty] = obj.message;
-            } else {
-              errors[obj.dataPath.replace('.', '')] = obj.message;
-            }
+    return values => {
+    const errors = {};
+    const validate = options.ajv.compile(schema);
+    const valid = validate(values.toJS ? values.toJS() : values);
+
+    if (!valid) {
+        validate.errors.forEach(_error => {
+        const error = _error.params.errors ? _error.params.errors[0] : _error;
+
+        const rootPath = error.dataPath;
+        const property = error.params.missingProperty ? `/${error.params.missingProperty}` : '';
+        let fullPath = `${rootPath}${property}`.replace(/\//g, '.').substring(1);
+
+        if (error.parentSchema && error.parentSchema.type === 'array') {
+            fullPath += '._error';
         }
-        )
-        return errors.reduce((fields, error) => {
-            let field = error.dataPath.replace(/\//g, ".").slice(1)
-            fields[field] = error.message
-            return fields
-        }, {})
+
+        const message = options.errorMessage(_error);
+
+        objectPath.set(errors, fullPath, message);
+        });
     }
-    return {}
+    return errors;
+    };
+};
+
+//************************************************************************ */
+
+function validateSchema(schema, target) {
+    const validator = validate(schema)
+    return validator(target)
 }
 
-
-module.exports = validateSchema;
+module.exports = validateSchema

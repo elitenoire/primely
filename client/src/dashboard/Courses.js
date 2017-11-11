@@ -6,11 +6,8 @@ import { DropdownField } from 'react-semantic-redux-form'
 import { alevels, gcse, ufp, common, degree, courses } from '../utils/choices'
 
 
-// NOTE : In schema required are degree, course
-
-const Courses = ({ course, subjects, onCancel, handleSubmit, previousStep , onSubmit}) => {
-console.log(course)
-console.log(subjects)
+const Courses = (props) => {
+    const { course, onCancel, handleSubmit, previousStep , onSubmit } = props
     return (
         <Form onSubmit={handleSubmit(onSubmit)}>
             <Segment color="green" style={{minHeight : 300}}>
@@ -53,6 +50,7 @@ const mapChoices = (list) => {
 
 // Field-Level Validations
 const required = value => value ? undefined : 'Required'
+const justOne = value => typeof value === 'string' ? undefined : `Only one subject needed`
 const maxValue = max => values =>
     values && values.length > max ? `Must be ${max} subjects or less` : undefined
 const minValue = min => values =>
@@ -75,7 +73,7 @@ const restrictions = {
     GCSE: { multiple : true, label: 'Choose from 7 to 9 GCSE subjects',
         validate : [required, minValue7, maxValue9]},
     UFP: { multiple : false, label: 'Choose a Foundation Programme relevant to your degree Field',
-        validate : [required] }
+        validate : [required, justOne] }
 }
 
 const colorLabel = {
@@ -90,9 +88,7 @@ const selector = formValueSelector("student")
 
 export default connect(
     (state, ownProps) => ({
-        course: selector(state, "courseSelection.course"),
-        subjects: selector(state, "courseSelection.GCSESub",
-                    "courseSelection.UFPSub", "courseSelection.ALevelsSub"),
+        course: selector(state, "courseSelection.course")
     }),
     null
 )(
@@ -102,7 +98,7 @@ export default connect(
             destroyOnUnmount: false,
             forceUnregisterOnUnmount: true,
             keepDirtyOnReinitialize: true,
-            enableReinitialize: true
+            enableReinitialize: true,
         }
     )(
         Courses

@@ -4,26 +4,19 @@ const schema = require('../common/schema/schema')
 
 const validate = (req, res, next) => {
     const response = validator(schema, req.body)
-    if(response[0]){ // passed validation
-        //let subjects = []
-        // const {alevelsSub, gcseSub, ufpSub } = req.body.courseSelection
-        // if(alevelsSub) {
-        //     subjects = alevelsSub
-        //     delete req.body.courseSelection.alevelsSub
-        // }
-        // if(gcseSub) {
-        //     subjects = gcseSub
-        //     delete req.body.courseSelection.gcseSub
-        // }
-        // if(ufpSub) {
-        //     subjects = [ufpSub]
-        //     delete req.body.courseSelection.ufpSub
-        //     }
-        // req.body.courseSelection.subjects = subjects
+    if(Object.keys(response).length === 0){ // passed validation
+        const course = req.body.courseSelection.course
+        const subjects = req.body.courseSelection[`${course}Sub`]
+        // reset subject fields
+        req.body.courseSelection.ALevelsSub = []
+        req.body.courseSelection.GCSESub = []
+        req.body.courseSelection.UFPSub = ""
+        // replace with selected subjects
+        req.body.courseSelection[`${course}Sub`] = subjects
         next()
     }
     else { // failed validation
-        res.status(422).json(response[1]) //<-- error object
+        res.status(422).json(response) //<-- error object
     }
 }
 

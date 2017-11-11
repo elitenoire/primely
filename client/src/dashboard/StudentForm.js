@@ -12,7 +12,7 @@ class StudentForm extends Component {
         this.props.watchForm()
     }
     render(){
-    const { step, nextStep, previousStep, onSubmit, onCancel} = this.props
+    const { step, nextStep, previousStep, onSubmit, onCancel } = this.props
     return (
         <div>
             {step === 1 && (
@@ -40,9 +40,6 @@ class StudentForm extends Component {
 }
 
 
-// StudentForm.propTypes = {
-//   onSubmit: PropTypes.func.isRequired
-// }
 
 const formName = 'student'
 
@@ -53,7 +50,6 @@ export default connect(
     { watchForm }
 )(reduxForm({
     form: formName, //helps to clear out form when unmounted like cancelling/navigating away
-    //destroyOnUnmount: false,
     enableReinitialize: true,
     keepDirtyOnReinitialize: true,
 }

@@ -3,7 +3,6 @@ import React from 'react';
 import {Field, FormSection, reduxForm } from 'redux-form'
 import { Form, Button, Segment } from 'semantic-ui-react'
 import { InputField } from 'react-semantic-redux-form'
-import { validate } from '../utils'
 
 const EduHistory = ({ handleSubmit, previousStep, onCancel }) => {
     return (
@@ -43,7 +42,6 @@ const EduHistory = ({ handleSubmit, previousStep, onCancel }) => {
     )
 }
 
-const fields = ['school', 'state', 'cert' , 'attended.from', 'attended.to']
 
 export default reduxForm (
         {
@@ -52,7 +50,6 @@ export default reduxForm (
             forceUnregisterOnUnmount: true,
             keepDirtyOnReinitialize: true,
             enableReinitialize: true,
-            validate : validate(fields)
         }
     )(
         EduHistory

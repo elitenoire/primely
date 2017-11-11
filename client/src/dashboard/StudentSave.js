@@ -1,19 +1,19 @@
 import React, {Component} from 'react'
-import { Step, Segment, Header } from 'semantic-ui-react'
+import { Step, Segment, Header, Icon } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import StudentForm from './StudentForm'
-import { submitStudent, cancelStudent } from '../actions' //here or in studentNew component?
+import { submitStudent, cancelStudent } from '../actions'
 
 
 
-//Pass mode and match : {params} prop to StudentForm
 class StudentSave extends Component {
     constructor(props){
         super(props)
+        this.errorStyle =  { completed: false, icon: (<Icon color="red" name="delete" />) }
         this.past = { active: false, disabled: true, completed: true }
         this.present = { active: true, disabled: false, completed: false }
         this.future = { active: false, disabled: true, completed: false }
-        this.state = { step: 1, persona: this.present, eduhistory: this.future, courses: this.future
+        this.state = { step: 1, persona: this.present, eduHistory: this.future, courseSelection: this.future
         }
         this.onSubmit = this.onSubmit.bind(this)
     }
@@ -28,24 +28,36 @@ class StudentSave extends Component {
     }
 
     renderSteps = () => {
-        return [
+        let items =  [
             { key: 'persona', ...this.state.persona, title: 'Persona', description: 'Personal Details' },
-            { key: 'eduhistory', ...this.state.eduhistory, title : 'Past Education', description: 'Last Educational Experience' },
-            { key: 'courses', ...this.state.courses, title: 'Courses', description: 'Program and Course Selection' },
+            { key: 'eduHistory', ...this.state.eduHistory, title : 'Past Education', description: 'Last Educational Experience' },
+            { key: 'courseSelection', ...this.state.courseSelection, title: 'courseSelection', description: 'Program and Course Selection' },
         ]
+        items.forEach(item => {
+            if (this.props.submitErrors[item.key]){
+                Object.assign(item, this.errorStyle)
+            }
+            })
+        return items
     }
+
+    errCheck = (section) => {
+        if(this.props.submitErrors[section])
+            return {}
+        return {icon : false}
+        }
 
     nextStep = () => {
         const newStep = this.state.step + 1
-        let newState = { persona: this.past, eduhistory: this.present }
-        if(newStep === 3)  {newState = {eduhistory : this.past, courses : this.present}}
+        let newState = { persona: {...this.past, ...this.errCheck('persona')}, eduHistory: this.present }
+        if(newStep === 3)  {newState = {eduHistory : { ...this.past, ...this.errCheck('eduHistory')}, courseSelection : this.present}}
         this.setState({ ...this.state, step: newStep, ...newState })
     }
 
     previousStep = () => {
         const newStep = this.state.step - 1
-        let newState = { persona: this.present, eduhistory: this.future }
-        if(newStep === 2) {newState = {eduhistory : this.present, courses : this.future}}
+        let newState = { persona: this.present, eduHistory: this.future }
+        if(newStep === 2) {newState = {eduHistory : this.present, courseSelection : this.future}}
         this.setState({ ...this.state, step: newStep, ...newState })
     }
 
@@ -72,4 +84,9 @@ class StudentSave extends Component {
 
 const formName = 'student'
 
-export default connect(null, {submitStudent, cancelStudent} )(StudentSave)
+const mapStateToProps = state => {
+    return { submitErrors : state.form.student ? state.form.student.submitErrors || {} : {} }
+}
+
+
+export default connect(mapStateToProps, {submitStudent, cancelStudent} )(StudentSave)
