@@ -9,10 +9,9 @@ import { auth } from '../utils'
 export default function* manageLogin(){
     //doesn't cancel api call - need FIXING
     let isAuth = yield select(({ auth }) => auth.isAuth )
-    let errors = null
 
     while(!isAuth){ // don't need login if already authenticated
-        console.log('Waiting for login..')
+        let errors = {}
         const { cancel, submit } = yield race({
             cancel : take(CANCEL_LOGIN),
             submit : take(SUBMIT_LOGIN)

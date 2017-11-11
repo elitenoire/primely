@@ -1,5 +1,4 @@
 import { takeLatest, all} from 'redux-saga/effects'
-//import { routerActions } from 'react-router-redux'
 
 import { GET_STUDENTS, GET_STUDENT_SINGLE, STUDENT_FORM,
     DELETE_STUDENT_MODAL, } from '../constants'
@@ -17,10 +16,6 @@ export default function* manageDashboard(){
     }))
 }
 
-// function* changeRoute(path, { type, id }){
-//     const action = type === DELETE_SNAP_PASS ? 'replace' : 'push'
-//     yield put(routerActions[action](`${path}${id || ''}`))
-// }
 
 const actionSagaMap = {
     [GET_STUDENTS] : studentSaga,

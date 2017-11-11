@@ -34,6 +34,7 @@ const feedParser = (students) => {
     }, [])
 }
 
+// Parse time for feeds - add month later
 const timeParser = (timeStamp) => {
     const duration = Date.now() - timeStamp
 
@@ -51,50 +52,7 @@ const timeParser = (timeStamp) => {
     if(seconds > 0) return `${seconds} secs`
 }
 
-// const parseServerData = (student) => {
-//     const { course, subjects } = student.courseSelection
-//     if(course === 'ALevels'){
-//         student.courseSelection['alevelsSub'] = subjects
 
-//     }
-//     if(course === 'GCSE'){
-//         student.courseSelection['gcseSub'] = subjects
-//     }
-//     if(course === 'UFP'){
-//         student.courseSelection['ufpSub'] = subjects[0]
-//     }
-//     return student
-// }
 
-// Validate Form
-const validate = fields => values => {
-    return fields.reduce((errors, field) => {
-        if (!values[field]) {
-            errors[field] = 'Required'
-        }
-        return errors
-    }, {})
-}
+export { studentsParser, filterCourse, feedParser, timeParser }
 
-export { studentsParser, filterCourse, feedParser, validate }
-
-//test -> filterCourse
-// const students = {
-//     1 : {courseSelection : {course : 'gcse'}},
-//     2 : {courseSelection : {course : 'gcse'}},
-//     3 : {courseSelection : {course : 'ufp'}},
-//     4 : {courseSelection : {course : 'alevels'}},
-//     5 : {courseSelection : {course : 'ufp'}}
-// }
-
-//test -> feedParser
-// const students = {
-//     1 : {persona : {name : {firstName : 'Ada', lastName : 'jina'}},
-//         admin : [{name : 'keduti', mode : 'viewed'},{name : 'Tami', mode : 'created'}]},
-//     2 : {persona : {name : {firstName : 'Toby', lastName : 'Joe'}},
-//     admin : [{name : 'Nelsy', mode : 'edited'},{name : 'Kola', mode : 'created'}]},
-//     3 : {persona : {name : {firstName : 'Promise', lastName : 'Kel'}},
-//     admin : [{name : 'Jenny', mode : 'viewed'},{name : 'Tami', mode : 'created'}]},
-//     4 :{persona : {name : {firstName : 'Elina', lastName : 'lani'}},
-//     admin : [{name : 'keduti', mode : 'viewed'},{name : 'keduti', mode : 'edited'},{name : 'Jenny', mode : 'created'}]}
-// }

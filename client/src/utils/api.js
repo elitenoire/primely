@@ -69,9 +69,8 @@ const saveStudent = async (student, method, id = '') => {
   catch(err){
     if(err.response){
       return {error : err.response.data}
-      //return {error : {success : 'false' , _error : 'Something went wrong, please refresh'}}
   }
-  return {error : {success : 'false' , _error : 'Something went wrong, please refresh'}}
+  return {error : {success : 'false' , _error : 'Check network connectivity or please refresh'}}
   }
 }
 

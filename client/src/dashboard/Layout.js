@@ -95,5 +95,8 @@ class Layout extends Component {
     }
 }
 
-export default connect(({auth :{ currentAdmin }})=>({username : currentAdmin.username}), { selectMenuAction } )(Layout)
+export default connect(
+    ({auth :{ currentAdmin }})=>({username : currentAdmin.username}),
+    { selectMenuAction }
+)(Layout)
 

@@ -1,19 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm, submit } from 'redux-form'
-import { Container, Modal, Header, Button, Icon, Form } from 'semantic-ui-react'
+import { Container, Modal, Header, Button, Icon, Form, Divider } from 'semantic-ui-react'
 import { LabelInputField } from 'react-semantic-redux-form'
 import { cancelLogin, submitLoginData } from '../actions'
 
 
 const LoginModal = (props) => {
-    const { handleSubmit, submit, cancelLogin, submitLoginData,
-            loginErrMsg, error, submitting } = props
+    const { handleSubmit, submit, cancelLogin, error, submitting } = props
 
     return (
         <Modal basic open  closeIcon size="tiny" 
         onClose={cancelLogin} closeOnDimmerClick={false}
         >
+            <Header inverted color="green" as="h4">Tip: Use a 6-character username and admin as passowrd</Header>
+            <Divider />
             <Header inverted color="brown" icon='browser' content='Log In' />
             <Modal.Content>
                 <Form onSubmit={handleSubmit}>
@@ -44,7 +45,6 @@ const LoginModal = (props) => {
                     <Icon name='checkmark' /> Log In
                 </Button>
             </Modal.Actions>
-            <Header inverted color="green" as="h5">Tip: Use a 6-character username and admin as passowrd</Header>
         </Modal>
     )
 }
@@ -75,7 +75,7 @@ const handleKeyDown = (e, cb) => {
 
 
 export default connect(
-    ({ auth : { loginErrMsg } }) => ({ loginErrMsg }) ,
+    null ,
     { submit, cancelLogin }
 )(
     reduxForm(

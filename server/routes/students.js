@@ -1,16 +1,12 @@
 const express = require('express');
 const Student = require('../models/student')
 const validate = require('../middlewares/validate')
-//const { authChecker } = require('../middlewares/auth')
 const studentRouter = express.Router();
 
-//Only authenticated users can make request to route
-//studentRouter.use(authChecker)
 
 // Register a new student
-studentRouter.post('/api/students', validate, async (req, res) => {// validate first
+studentRouter.post('/api/students', validate, async (req, res) => {
   const admin = { name : req.decoded.username, mode : 'created', timeStamp : Date.now()}
-  //const admin = { name : 'Admin', mode : 'created'}
   const data = {...req.body, admin : [admin]}
 
   try {
@@ -39,7 +35,6 @@ studentRouter.get('/api/students', async (req, res) => {
 studentRouter.get('/api/students/:id', async (req, res) => {
   let id = req.params.id;
   const admin = { name : req.decoded.username, mode : 'viewed', timeStamp : Date.now()}
-  // const admin = { name : 'Admin', mode : 'viewed'}
   try {
     let viewedStudent = await Student.findById(id)
     //student.admin.unshift(admin)
@@ -53,11 +48,9 @@ studentRouter.get('/api/students/:id', async (req, res) => {
 
 
 // Update a student's profile
-studentRouter.put('/api/students/:id', validate,  async (req, res) => {//validate first
+studentRouter.put('/api/students/:id', validate,  async (req, res) => {
   const id = req.params.id;
-  //validate req
   const admin = { name : req.decoded.username, mode : 'edited', timeStamp : Date.now()}
-  // const admin = { name : 'Admin', mode : 'edited'}
   try {
     let student = await Student.findById(id)
     student.admin.unshift(admin)
@@ -77,7 +70,6 @@ studentRouter.put('/api/students/:id', validate,  async (req, res) => {//validat
 studentRouter.delete('/api/students/:id', async (req, res) => {
   const id = req.params.id;
   const admin = {name : req.decoded.username, mode : 'deleted', timeStamp : Date.now()}
-  // const admin = {name : 'Admin', mode : 'deleted', timeStamp : Date.now(), id}
   try {
     await Student.findByIdAndRemove(id)
     res.status(200).json({ admin, msg : 'Deleted student info'})

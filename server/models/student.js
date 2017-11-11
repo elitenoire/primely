@@ -48,13 +48,3 @@ const Student = mongoose.model('students', studentSchema)
 
 module.exports = Student
 
-// admin : {
-//     created :{
-//         by : String,
-//         timeStamp : { type: Date, default: Date.now }
-//     },
-//     edited : {
-//         by : String,
-//         timeStamp : { type: Date, default: Date.now }
-//     }
-// }

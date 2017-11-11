@@ -13,22 +13,23 @@ import createHistory from 'history/createBrowserHistory';
 import reducers from './reducers';
 import rootSaga from './sagas';
 import { auth } from './utils';
+import { ACCESS_TOKEN } from './constants'
 import App from './components/App'
 
 import registerServiceWorker from './registerServiceWorker';
 
-// TODO : set/persist current user (admin key) if isAuth
-// use jwt.decode to retireve uid/admin details from token
+// persist auth state from local storage
 const initialStore = {
     auth : {
-        isAuth : auth.isUserAuthenticated('accessToken'),
-        currentAdmin : auth.decodeToken('accessToken') || {} }
+        isAuth : auth.isUserAuthenticated(ACCESS_TOKEN),
+        currentAdmin : auth.decodeToken(ACCESS_TOKEN) || {} }
 }
+
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const history = createHistory({ basename: process.env.PUBLIC_URL})
 const reduxSaga = createReduxSaga();
-const middlewares = [reduxSaga, routerMiddleware(history)]
+const middlewares = [routerMiddleware(history), reduxSaga]
 const store = createStore(reducers, initialStore, composeEnhancers(applyMiddleware(...middlewares)))
 
 reduxSaga.run(rootSaga)

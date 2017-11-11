@@ -16,9 +16,8 @@ auth.login = async (user) => {
     catch(err){
         if(err.response){
             return {error : err.response.data}
-            //return {error : {success : 'false' , _error : 'Something went wrong, please refresh'}}
         }
-        return {error : {success : 'false' , _error : 'Something went wrong, please refresh'}}
+        return {error : {success : 'false' , _error : 'Check network connection or please refresh'}}
     }
 }
 
@@ -34,11 +33,8 @@ auth.getTokenFromStorage = (key = 'token') => {
 auth.isUserAuthenticated = (key = 'token') => {
     const decodedToken = auth.decodeToken(key)
     return decodedToken && (decodedToken.exp > Date.now() / 1000)
-    //return auth.getTokenFromStorage(key) !== null
 }
 
-// TODO : set/persist current user (admin key) if isAuth
-// use jwt.decode to retireve uid/admin details from token
 
 // Authenticate user
 auth.authenticateUser = (key = 'token', token) => {
