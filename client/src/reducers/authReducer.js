@@ -1,16 +1,16 @@
 import { LOGIN_ADMIN_FAIL, LOGIN_ADMIN_PASS, LOGOUT_ADMIN_PASS } from '../constants'
 
-const INITIAL_STATE = { isAuth : false , loginErrMsg : '', currentAdmin : {}}
+const INITIAL_STATE = { isAuth : false ,  currentAdmin : {}}
 
 export default (state = INITIAL_STATE, action) => {
-    const { type, admin, logInError } = action
+    const { type, admin } = action
     switch(type){
         case LOGIN_ADMIN_PASS :
-            return { ...state, isAuth : true, loginErrMsg : '' , currentAdmin : {...state.currentAdmin, ...admin} }
+            return { ...state, isAuth : true, currentAdmin : {...state.currentAdmin, ...admin} }
         case LOGIN_ADMIN_FAIL :
-            return { ...state, loginErrMsg : logInError.success}
+            return { ...state, isAuth : false, currentAdmin : {}}
         case LOGOUT_ADMIN_PASS :
-            return { ...state, isAuth : false, loginErrMsg : '', currentAdmin : {}}
+            return { ...state, isAuth : false,  currentAdmin : {}}
         default :
             return state
     }

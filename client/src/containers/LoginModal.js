@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Field, reduxForm, submit } from 'redux-form'
 import { Container, Modal, Header, Button, Icon, Form, Divider } from 'semantic-ui-react'
 import { LabelInputField } from 'react-semantic-redux-form'
+import Toast from '../dashboard/Toast'
 import { cancelLogin, submitLoginData } from '../actions'
 
 
@@ -10,7 +11,8 @@ const LoginModal = (props) => {
     const { handleSubmit, submit, cancelLogin, error, submitting } = props
 
     return (
-        <Modal basic open  closeIcon size="tiny" 
+        <div>
+        <Modal basic open  closeIcon size="tiny"
         onClose={cancelLogin} closeOnDimmerClick={false}
         >
             <Header inverted color="green" as="h4">Tip: Use a 6-character username and admin as password</Header>
@@ -46,6 +48,8 @@ const LoginModal = (props) => {
                 </Button>
             </Modal.Actions>
         </Modal>
+        <Toast />
+        </div>
     )
 }
 
