@@ -36,22 +36,21 @@ const feedParser = (students) => {
 
 // Parse time for feeds - add month later
 const timeParser = (timeStamp) => {
-    const duration = Date.now() - timeStamp
+    const duration = Date.now() - Date.parse(timeStamp)
 
-    let seconds = parseInt((duration/1000)%60, 10)
-    , minutes = parseInt((duration/(1000*60))%60, 10)
-    , hours = parseInt((duration/(1000*60*60))%24, 10)
+    let secs = parseInt((duration/1000)%60, 10)
+    , mins = parseInt((duration/(1000*60))%60, 10)
+    , hrs = parseInt((duration/(1000*60*60))%24, 10)
     , days  = parseInt(duration/(1000*60*60*24), 10);
 
-    let hoursDays = parseInt(days*24, 10);
-    hours += hoursDays;
+    let hrsDays = parseInt(days*24, 10);
+    hrs += hrsDays;
 
-    if(days > 0) return `${days} days`
-    if(hours > 0) return `${hours} hrs`
-    if(minutes > 0) return `${minutes} mins`
-    if(seconds > 0) return `${seconds} secs`
+    if(days > 0) return `${days === 1 ? 'a day' : `${days} days`}`
+    if(hrs > 0) return `${hrs === 1 ? 'an hour' : `${hrs} hrs`}`
+    if(mins > 0) return `${mins === 1 ? 'a min' : `${mins} mins`}`
+    if(secs >= 0) return 'Just a moment'
 }
-
 
 
 export { studentsParser, filterCourse, feedParser, timeParser }

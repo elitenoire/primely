@@ -4,8 +4,6 @@ import { connect } from 'react-redux'
 import StudentForm from './StudentForm'
 import { submitStudent, cancelStudent } from '../actions'
 
-
-
 class StudentSave extends Component {
     constructor(props){
         super(props)
@@ -87,6 +85,5 @@ const formName = 'student'
 const mapStateToProps = state => {
     return { submitErrors : state.form.student ? state.form.student.submitErrors || {} : {} }
 }
-
 
 export default connect(mapStateToProps, {submitStudent, cancelStudent} )(StudentSave)

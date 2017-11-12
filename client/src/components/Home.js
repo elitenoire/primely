@@ -9,7 +9,7 @@ const Home = ({ children }) => {
         <div>
             <Segment basic inverted color="brown" attached="top"
             textAlign="center"
-            style={{ minHeight: 600, padding : '1em 0em', border : 'none' }}
+            style={{ minHeight: '75vh', padding : '1em 0em', border : 'none' }}
             vertical
             >
                 <div>
@@ -21,7 +21,7 @@ const Home = ({ children }) => {
 
             <Segment basic inverted color="yellow" attached
                 textAlign="center" padding="very"
-                style={{ minHeight: 200, border : 'none' }}
+                style={{ minHeight: '25vh', border : 'none' }}
             >
             <Header as="h2" color="red" >DASHBOARD FEATURES</Header>
 
@@ -35,7 +35,7 @@ const Home = ({ children }) => {
 
             </Segment>
 
-            <Segment basic inverted attached="bottom"
+            <Segment basic inverted attached="bottom" style={{minHeight: '5vh'}}
                 textAlign="center"
             >
                 <Container text>

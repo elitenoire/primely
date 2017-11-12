@@ -6,7 +6,7 @@ const studentRouter = express.Router();
 
 // Register a new student
 studentRouter.post('/api/students', validate, async (req, res) => {
-  const admin = { name : req.decoded.username, mode : 'created', timeStamp : Date.now()}
+  const admin = {name : req.decoded.username, mode : 'created', timeStamp : Date.now()}
   const data = {...req.body, admin : [admin]}
 
   try {
@@ -34,7 +34,7 @@ studentRouter.get('/api/students', async (req, res) => {
 //View a student's profile
 studentRouter.get('/api/students/:id', async (req, res) => {
   let id = req.params.id;
-  const admin = { name : req.decoded.username, mode : 'viewed', timeStamp : Date.now()}
+  const admin = {name : req.decoded.username, mode : 'viewed', timeStamp : Date.now()}
   try {
     let viewedStudent = await Student.findById(id)
     //student.admin.unshift(admin)
@@ -50,11 +50,11 @@ studentRouter.get('/api/students/:id', async (req, res) => {
 // Update a student's profile
 studentRouter.put('/api/students/:id', validate,  async (req, res) => {
   const id = req.params.id;
-  const admin = { name : req.decoded.username, mode : 'edited', timeStamp : Date.now()}
+  const admin = {name : req.decoded.username, mode : 'edited', timeStamp : Date.now()}
   try {
     let student = await Student.findById(id)
     student.admin.unshift(admin)
-    student.updatedAt = Date.now()
+    student.updatedAt = Date.now() // mongo takes care of this if making update req
     Object.assign(student, req.body)
     const updatedStudent = await student.save()
 

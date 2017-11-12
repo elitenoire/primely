@@ -12,6 +12,7 @@ class Layout extends Component {
     toggleVisibility = () => this.setState({ visible: !this.state.visible })
     toggleActiveState = () => this.setState({ active : !this.state.active})
     onLogOut = () => this.props.selectMenuAction('LOGOUT', ACCESS_TOKEN)
+    hideSidebar = () => this.state.visible ? this.setState({visible : false}) : null
 
     render() {
     const { visible, active } = this.state
@@ -58,7 +59,11 @@ class Layout extends Component {
                     </Menu.Item>
                 </Sidebar>
 
-                <Sidebar.Pusher>
+                <Sidebar.Pusher
+                    dimmed={visible}
+                    onClick={this.hideSidebar}
+                    
+                >
                     <Segment basic inverted color="brown">
                         <Menu borderless inverted color="brown">
                             <Menu.Item name='toggle' icon onClick={this.toggleVisibility}>
@@ -84,7 +89,7 @@ class Layout extends Component {
                         </Menu>
                     </Segment>
 
-                    <Segment basic padded secondary textAlign="center" style={{ minHeight: 500}} >
+                    <Segment basic padded secondary textAlign="center" style={{ minHeight: '90vh'}} >
                         {children}
                     </Segment>
 

@@ -53,4 +53,3 @@ export default reduxForm(
 )(
     Persona
 )
-

@@ -40,7 +40,6 @@ class StudentForm extends Component {
 }
 
 
-
 const formName = 'student'
 
 export default connect(

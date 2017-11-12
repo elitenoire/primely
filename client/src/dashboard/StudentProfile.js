@@ -32,7 +32,6 @@ class StudentProfile extends Component {
     }
 
 
-
     render(){
         const { deleteModal, isFetching, student } = this.props
         const fetched = !isFetching
@@ -92,5 +91,6 @@ const mapStateToProps = ({ students : { students, isFetching, deleteModal } }, o
 export default connect(
     mapStateToProps,
     { getSingleStudent, deleteStudent, editStudent, cancelModal, openModal }
-)(StudentProfile)
-
+)(
+    StudentProfile
+)

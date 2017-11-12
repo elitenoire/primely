@@ -3,7 +3,8 @@ const { Schema } = mongoose;
 
 const adminSchema = new Schema({
     name : String,
-    mode : String
+    mode : String,
+    timeStamp : { type: Date }
 })
 
 
