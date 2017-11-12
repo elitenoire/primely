@@ -18,7 +18,6 @@ function* deleteSingleStudent(id){
 export default function* deleteStudentCheck({ id }){
     yield put(showModal(true))
     //wait for UI to cancel or approve delete from modal
-    console.log('Delete modal is open!')
     const { deleteOk } = yield race(
         {
             deleteOk: take(DELETE_STUDENT),
@@ -32,15 +31,3 @@ export default function* deleteStudentCheck({ id }){
     //close modal
     yield put(showModal(false))
 }
-
-
-//WATCHER SAGA - listen for dispatched action, call worker to handle action
-// export default function* watchDeleteStudent(){
-//     // takeEvery  - listen for every delete request which might cause error if previous
-//     // request already succeeded
-//     // takeLatest - cancel previous listener since user can delete in two places
-//     console.log('Will watch for delete request')
-//     yield takeLatest(DELETE_STUDENT_MODAL, deleteStudentCheck)
-//     console.log('Seen a delete request!')
-// }
-

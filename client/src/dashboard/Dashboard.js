@@ -10,9 +10,7 @@ import { getStudents } from '../actions'
 
 class Dashboard extends Component {
     componentDidMount(){
-        console.log('about to dispatch action')
         this.props.getStudents()
-        console.log('get students dispatched')
     }
 
     render(){

@@ -26,7 +26,6 @@ export default function* manageLogin(){
             yield put(startSubmit(formName))
             const { response, error } = yield call(auth.login, data)
             if(response){
-                console.log('axios res data ', response.data)
                 const { token } = response.data
                 yield call(auth.authenticateUser, ACCESS_TOKEN, token)
                 yield put(stopSubmit(formName, errors))
@@ -35,7 +34,6 @@ export default function* manageLogin(){
                 return
             }
             else {
-                console.log('catch block err ', error)
                 errors = error
                 yield put({ type : LOGIN_ADMIN_FAIL, logInError : error })
                 yield put(stopSubmit(formName, errors))

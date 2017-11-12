@@ -34,8 +34,6 @@ class StudentProfile extends Component {
 
 
     render(){
-        console.log('rendering...')
-        console.log('isfetching is ', this.props.isFetching)
         const { deleteModal, isFetching, student } = this.props
         const fetched = !isFetching
 

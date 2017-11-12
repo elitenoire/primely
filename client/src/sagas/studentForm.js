@@ -4,7 +4,6 @@ import studentSaver from './studentSave'
 
 //WATCHER SAGA - listen for dispatched action, call worker to handle action
 export default function* manageStudentForm(){
-    console.log('watching form')
     const { cancel, submit } = yield race({
         cancel : take(CANCEL_STUDENT),
         submit : take(SUBMIT_STUDENT)
@@ -15,7 +14,6 @@ export default function* manageStudentForm(){
         return //not necessary cuz of else statement
     }
     else {
-        console.log('Submitting action...', submit)
         yield fork(studentSaver, submit)
     }
 }

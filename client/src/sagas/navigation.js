@@ -18,6 +18,7 @@ function* manageNavigation({ payload : { pathname }}){
     return
 }
 
+// Watch for logout in dashboard
 function* manageLogout(){
     const logout = yield take(SELECT_LOGOUT)
     yield call(auth.deauthenticateUser, logout.key)
@@ -39,5 +40,4 @@ const routeToSagaMap = {
 //WATCHER SAGA - listen for dispatched action, call worker to handle action
 export default function* watchNavigation(){
     yield takeEvery(LOCATION_CHANGE, manageNavigation)
-    console.log('watcher detected location change')
 }
