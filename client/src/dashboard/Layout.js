@@ -2,9 +2,10 @@ import React, {Component} from "react";
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Sidebar, Segment, Responsive, Accordion, Item,
-    Menu, Icon, Header } from 'semantic-ui-react'
+    Menu, Icon, Header, Image } from 'semantic-ui-react'
 import { selectMenuAction } from '../actions'
 import { ACCESS_TOKEN } from '../constants'
+import Logo from '../assets/logo.svg'
 
 class Layout extends Component {
     state = { visible: false, active : false }
@@ -25,6 +26,7 @@ class Layout extends Component {
                 >
                     <Menu.Item name='home' as={Link} to='/'>
                         <Segment basic>
+                            <Image centered size="tiny" src={Logo} />
                             <Header as="h2" color="yellow" inverted>Primely</Header>
                         </Segment>
                     </Menu.Item>
@@ -70,7 +72,7 @@ class Layout extends Component {
                                 <Icon name="sidebar" color="yellow" />
                             </Menu.Item>
                             <Menu.Item name='dashboard'>
-                                <Header as="h2" color="yellow">Dashboard</Header>
+                                <Header as="h1" color="yellow">Dashboard</Header>
                             </Menu.Item>
                             <Menu.Item name='profile' fitted position='right'onClick={this.handleItemClick}>
                                 <Responsive

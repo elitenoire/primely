@@ -13,7 +13,7 @@ const LoginModal = (props) => {
         <Modal basic open  closeIcon size="tiny" 
         onClose={cancelLogin} closeOnDimmerClick={false}
         >
-            <Header inverted color="green" as="h4">Tip: Use a 6-character username and admin as passowrd</Header>
+            <Header inverted color="green" as="h4">Tip: Use a 6-character username and admin as password</Header>
             <Divider />
             <Header inverted color="brown" icon='browser' content='Log In' />
             <Modal.Content>

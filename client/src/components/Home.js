@@ -1,7 +1,8 @@
 import React from 'react';
 import NavBar from '../components/NavBar'
 import Landing from '../components/Landing'
-import { Container, Segment, Header, Icon, Statistic } from 'semantic-ui-react'
+import Features from './Features'
+import { Container, Segment, Header, Icon, Divider } from 'semantic-ui-react'
 
 
 const Home = ({ children }) => {
@@ -20,18 +21,14 @@ const Home = ({ children }) => {
             </Segment>
 
             <Segment basic inverted color="yellow" attached
-                textAlign="center" padding="very"
+                textAlign="center" padded
                 style={{ minHeight: '25vh', border : 'none' }}
             >
             <Header as="h2" color="red" >DASHBOARD FEATURES</Header>
 
-            <Statistic.Group widths={2}>
-                <Statistic  value='Create' text />
-                <Statistic  value='View' text />
-                <Statistic  value='Edit' text />
-                <Statistic  value='Delete' text />
-            </Statistic.Group>
+            <Divider hidden section/>
 
+            <Features />
 
             </Segment>
 
