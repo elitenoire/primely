@@ -5,12 +5,13 @@ import { showModal } from '../actions'
 import { api } from '../utils'
 
 function* deleteSingleStudent(id){
-    const { error } = yield call(api().deleteStudent, id) //delete from backend api
+    const { error, response } = yield call(api().deleteStudent, id) //delete from backend api
     if(error){
-        yield put({type : DELETE_STUDENT_FAIL, error})
+        yield put({type : DELETE_STUDENT_FAIL, mode : 'delete', error})
     }
     else {
-        yield put({type : DELETE_STUDENT_PASS , method : 'replace'})
+        const { msg } = response.data
+        yield put({type : DELETE_STUDENT_PASS , msg,  method : 'replace'})
         yield put({type : DELETE_STUDENT_CACHE, id }) //delete from local cache
     }
 }

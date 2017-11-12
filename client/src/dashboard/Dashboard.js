@@ -5,6 +5,7 @@ import { Segment, Grid, Container, Header, Message,
         Button, Icon } from 'semantic-ui-react'
 import AdminFeed from './AdminFeed'
 import AdminStats from './AdminStats'
+import Toast from './Toast'
 import { getStudents } from '../actions'
 
 
@@ -29,6 +30,7 @@ class Dashboard extends Component {
                         floating
                         compact
                     />
+                    <Toast />
                 </Grid.Row>
                 <Grid.Column stretched>
                     <Container>

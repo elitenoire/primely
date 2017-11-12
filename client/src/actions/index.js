@@ -1,7 +1,7 @@
 import { CANCEL_LOGIN , SUBMIT_LOGIN, GET_STUDENTS, SUBMIT_STUDENT,
     GET_STUDENT_SINGLE, EDIT_STUDENT, DELETE_STUDENT, CANCEL_STUDENT,
     CANCEL_DELETE_MODAL, TOGGLE_DELETE_MODAL, DELETE_STUDENT_MODAL,
-    STUDENT_FORM } from '../constants'
+    STUDENT_FORM, DISMISS_TOAST } from '../constants'
 
 export const toggleModal = (type) => {
     return {
@@ -98,5 +98,11 @@ export const openModal = (id) => {
     return {
         type : DELETE_STUDENT_MODAL,
         id
+    }
+}
+
+export const dismissToast = () => {
+    return {
+        type : DISMISS_TOAST
     }
 }

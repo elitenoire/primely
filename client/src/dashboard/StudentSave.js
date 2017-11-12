@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import { Step, Segment, Header, Icon } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import StudentForm from './StudentForm'
+import Toast from './Toast'
 import { submitStudent, cancelStudent } from '../actions'
 
 class StudentSave extends Component {
@@ -75,6 +76,7 @@ class StudentSave extends Component {
                         id={params.id}
                     />
                 </Segment>
+                <Toast />
             </Segment>
         )
     }

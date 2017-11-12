@@ -7,6 +7,7 @@ import ProfileCard from './ProfileCard'
 import ProfileData from './ProfileData'
 import DeleteModal from './DeleteModal'
 import Loader from './Loader'
+import Toast from './Toast'
 
 
 class StudentProfile extends Component {
@@ -53,6 +54,8 @@ class StudentProfile extends Component {
                 </div>
                 )}
                 <Loader active={isFetching}/>
+
+                <Toast />
 
                 <DeleteModal
                 open={deleteModal}

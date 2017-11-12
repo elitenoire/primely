@@ -5,6 +5,7 @@ import { Label, Table, Segment, Container, Button } from 'semantic-ui-react'
 import AvatarName from './AvatarName'
 import DeleteModal from './DeleteModal'
 import Loader from './Loader'
+import Toast from './Toast'
 import { getStudents, deleteStudent, cancelModal, openModal } from '../actions'
 
 class StudentList extends Component {
@@ -105,6 +106,8 @@ class StudentList extends Component {
                 </Segment>
 
                 <Loader active={isFetching} />
+
+                <Toast />
 
                 <DeleteModal
                 open={deleteModal}

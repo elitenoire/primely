@@ -28,7 +28,7 @@ const getStudents = async () => {
     if(err.response){
       return {error : err.response.data}
     }
-    return {error : err}
+    return {error : 'Something went wrong. Try again later'}
   }
 }
 
@@ -42,7 +42,7 @@ const getOneStudent = async (id) => {
     if(err.response){
       return {error : err.response.data}
     }
-    return {error : err}
+    return {error : 'Something went wrong. Try again later'}
   }
 }
 
@@ -56,7 +56,7 @@ const deleteStudent = async (id) => {
     if(err.response){
       return {error : err.response.data}
     }
-    return {error : err.message}
+    return {error : 'Something went wrong. Try again later'}
   }
 }
 
